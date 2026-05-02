@@ -14,9 +14,198 @@
       href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./style.css?v=54" />
+    <link rel="stylesheet" href="./style.css?v=67" />
+    <style>
+      /* KLIX loader — inline so it paints instantly, before style.css loads */
+      html.klix-loading,
+      html.klix-loading body {
+        overflow: hidden;
+      }
+      .klix-loader {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background:
+          radial-gradient(900px 500px at 50% 45%, rgba(92, 214, 220, 0.10), transparent 60%),
+          radial-gradient(700px 400px at 50% 55%, rgba(120, 220, 225, 0.06), transparent 65%),
+          #051a1d;
+        opacity: 1;
+        transition: opacity 520ms cubic-bezier(0.22, 1, 0.36, 1),
+          visibility 0s linear 520ms;
+      }
+      .klix-loader::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background-image:
+          linear-gradient(rgba(92, 214, 220, 0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(200, 200, 255, 0.035) 1px, transparent 1px);
+        background-size: 56px 56px;
+        mask-image: radial-gradient(ellipse 70% 55% at 50% 50%, #000 0%, transparent 75%);
+        -webkit-mask-image: radial-gradient(ellipse 70% 55% at 50% 50%, #000 0%, transparent 75%);
+        opacity: 0.55;
+      }
+      /* The logo IS the loading bar: a low-opacity ghost copy + a fully-opaque
+         "fill" copy clipped from left → right, looping like an indeterminate bar. */
+      .klix-loader__logo {
+        position: relative;
+        width: clamp(160px, 26vw, 260px);
+        line-height: 0;
+        opacity: 0;
+        transform: translateY(6px);
+        animation: klix-loader-in 700ms cubic-bezier(0.22, 1, 0.36, 1) 80ms forwards;
+      }
+      .klix-loader__mark {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+      .klix-loader__mark--ghost {
+        opacity: 0.16;
+        filter: drop-shadow(0 0 14px rgba(182, 227, 230, 0.06));
+      }
+      .klix-loader__mark--fill {
+        position: absolute;
+        inset: 0;
+        opacity: 1;
+        filter: drop-shadow(0 0 22px rgba(182, 227, 230, 0.32));
+        /* Soft-edged sweep mask — feathered so the fill edge dissolves into
+           the ghost (no rectangular clip line, no haloed bounding box). */
+        -webkit-mask-image: linear-gradient(
+          90deg,
+          #000 0%,
+          #000 calc(50% - 14px),
+          transparent calc(50% + 14px),
+          transparent 100%
+        );
+        mask-image: linear-gradient(
+          90deg,
+          #000 0%,
+          #000 calc(50% - 14px),
+          transparent calc(50% + 14px),
+          transparent 100%
+        );
+        -webkit-mask-size: 200% 100%;
+        mask-size: 200% 100%;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: 100% 0;
+        mask-position: 100% 0;
+        animation: klix-loader-fill 2200ms cubic-bezier(0.65, 0, 0.35, 1) 200ms infinite;
+      }
+      .klix-loader.is-hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+      @keyframes klix-loader-in {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      /* Fill cycle: empty → fills L→R → holds → drains off left edge.
+         Both endpoints are "nothing visible" so the loop snap is invisible. */
+      @keyframes klix-loader-fill {
+        0% {
+          mask-position: 100% 0;
+          -webkit-mask-position: 100% 0;
+        }
+        38% {
+          mask-position: 0% 0;
+          -webkit-mask-position: 0% 0;
+        }
+        62% {
+          mask-position: 0% 0;
+          -webkit-mask-position: 0% 0;
+        }
+        100% {
+          mask-position: -100% 0;
+          -webkit-mask-position: -100% 0;
+        }
+      }
+      @media (image.pngimage.pngprefers-reduced-motion: reduce) {
+        .klix-loader__logo {
+          animation: none;
+          opacity: 1;
+          transform: none;
+        }
+        .klix-loader__mark--fill {
+          animation: none;
+          mask-position: 0% 0;
+          -webkit-mask-position: 0% 0;
+          opacity: 0.85;
+        }
+        .klix-loader {
+          transition: opacity 200ms linear, visibility 0s linear 200ms;
+        }
+      }
+    </style>
+    <script>
+      // Mark loading state ASAP to lock scroll while loader is up
+      document.documentElement.classList.add("klix-loading");
+    </script>
   </head>
   <body>
+    <div class="klix-loader" id="klixLoader" role="status" aria-live="polite" aria-label="טוען">
+      <div class="klix-loader__logo">
+        <img
+          class="klix-loader__mark klix-loader__mark--ghost"
+          src="logo.png"
+          alt="KLIX"
+          width="260"
+          height="95"
+          decoding="async"
+        />
+        <img
+          class="klix-loader__mark klix-loader__mark--fill"
+          src="logo.png"
+          alt=""
+          aria-hidden="true"
+          width="260"
+          height="95"
+          decoding="async"
+        />
+      </div>
+    </div>
+    <script>
+      (function () {
+        var loader = document.getElementById("klixLoader");
+        if (!loader) return;
+        var hidden = false;
+        function hide() {
+          if (hidden) return;
+          hidden = true;
+          loader.classList.add("is-hidden");
+          document.documentElement.classList.remove("klix-loading");
+          setTimeout(function () {
+            if (loader && loader.parentNode) {
+              loader.parentNode.removeChild(loader);
+            }
+          }, 600);
+        }
+        var MIN_DISPLAY_MS = 1600;
+        var startedAt = Date.now();
+        function hideAfterMin(extra) {
+          var elapsed = Date.now() - startedAt;
+          var wait = Math.max(0, MIN_DISPLAY_MS - elapsed) + (extra || 0);
+          setTimeout(hide, wait);
+        }
+        if (document.readyState === "complete") {
+          hideAfterMin(0);
+        } else {
+          window.addEventListener("load", function () {
+            hideAfterMin(300);
+          });
+        }
+        // Fail-safe: never trap the user
+        setTimeout(hide, 6000);
+      })();
+    </script>
     <a class="skip-link" href="#main">דלג לתוכן</a>
     <a class="sticky-wa" href="#contact" aria-label="וואטסאפ">
       <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
@@ -64,7 +253,25 @@
         <a href="#offer">המודל</a>
         <a href="#projects">פרויקטים אחרונים</a>
         <a href="#testi">המלצות לקוחות</a>
-        <a href="#contact" class="menu-overlay__cta">השאר פרטים ←</a>
+        <a href="#contact" class="menu-overlay__cta cta-capsule cta-capsule--menu" aria-label="שנדבר? השאר פרטים">
+          <span class="cta-capsule__shell">
+            <span class="cta-capsule__rail">
+              <span class="cta-capsule__pill">שנדבר?</span>
+              <span class="cta-capsule__orb" aria-hidden="true">
+                <svg class="cta-capsule__arrow" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true">
+                  <path
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M17 17 7 7m0 0h4m-4 0v4"
+                  />
+                </svg>
+              </span>
+            </span>
+          </span>
+        </a>
       </nav>
     </div>
 
@@ -138,18 +345,14 @@
         </div>
       </div>
 
-      <a class="hero__scroll" href="#why" aria-label="גלול למטה">
-        <span class="hero__scroll-mouse" aria-hidden="true">
-          <span class="hero__scroll-wheel"></span>
-        </span>
-      </a>
     </section>
 
     <section class="section argument" id="why" aria-labelledby="why-heading">
       <div class="container">
         <div class="argument__intro" data-reveal>
           <h2 id="why-heading" class="argument__title">
-            יש לכם עסק טוב. לקוחות מרוצים.
+            <span class="argument__title-line">יש לכם עסק טוב.</span>
+            <span class="argument__title-line">לקוחות מרוצים.</span>
             <span class="argument__title-accent">אולי אפילו קמפיין שרץ.</span>
           </h2>
           <p class="argument__sub">
@@ -328,85 +531,89 @@
           <p class="section__sub">דוגמאות לדפי עסק ודפי נחיתה שעלו לאוויר ומריצים קמפיינים בפועל.</p>
         </div>
 
-        <div class="projects__list">
-          <article class="project project--feature" data-reveal>
-            <div class="project__visual project__visual--mockup">
-              <div class="project__glow" aria-hidden="true"></div>
-              <img
-                class="project__shot"
-                src="1195469_OT11BC1-min.png"
-                alt="תצוגת אתר הנצחה 7.10 על מסך iMac"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-            <div class="project__body">
-              <span class="project__kicker">אתר תדמית</span>
-              <h3 class="project__title">אתר הנצחה 7.10</h3>
-              <p>
-                בעקבות אירועי ה־7 לאוקטובר, ביוזמה אישית ובשיתוף פעולה עם
-                יצרנית עמוד האינסטגרם המוכר Weremember710, הקמנו אתר הנצחה
-                בו ניתן לצפות ולקבל מידע על הנופלים של השבת השחורה.
-              </p>
-              <ul class="project__meta">
-                <li>UX מותאם תוכן רגיש</li>
-                <li>חיפוש וסינון לפי שם</li>
-                <li>טפסי תרומות והנצחה</li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="project project--reverse" data-reveal data-delay="120">
-            <div class="project__visual">
-              <div class="browser browser--showcase">
-                <div class="browser__bar">
-                  <i></i><i></i><i></i>
-                  <span>roey-fit.co.il</span>
+        <div class="cgal" id="cgal">
+          <div class="cgal__viewport" id="cgalViewport">
+            <div class="cgal__track" id="cgalTrack">
+              <!-- Set 1 -->
+              <article class="cgal__item">
+                <div class="cgal__media">
+                  <img
+                    src="1195469_OT11BC1-min.png"
+                    alt="אתר הנצחה 7.10"
+                    decoding="async"
+                    draggable="false"
+                  />
                 </div>
-                <div class="browser__screen browser__screen--3"></div>
-              </div>
-            </div>
-            <div class="project__body">
-              <span class="project__kicker">אתר עסק לנותן שירות</span>
-              <h3 class="project__title">רועי שמש — אימון אישי</h3>
-              <p>
-                אתר עסק דיגיטלי שמחמם את הליד לפני השיחה: סיפור אישי, פילוסופית
-                האימון, חבילות מחיר ברורות וטופס פנייה ישיר. תוך חודש הצליח רועי
-                להפסיק לשפוך תקציב על שיחות לא רלוונטיות.
-              </p>
-              <ul class="project__meta">
-                <li>קופי שמתמיין</li>
-                <li>גלריית לפני/אחרי</li>
-                <li>טופס לידים מסונן</li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="project" data-reveal data-delay="240">
-            <div class="project__visual">
-              <div class="browser browser--showcase">
-                <div class="browser__bar">
-                  <i></i><i></i><i></i>
-                  <span>klix.co.il</span>
+                <div class="cgal__cap">
+                  <span class="cgal__kicker">אתר תדמית</span>
+                  <h3 class="cgal__title">אתר הנצחה 7.10</h3>
                 </div>
-                <div class="browser__screen browser__screen--2"></div>
-              </div>
+              </article>
+              <article class="cgal__item">
+                <div class="cgal__media">
+                  <div class="browser browser--showcase cgal__browser">
+                    <div class="browser__bar"><i></i><i></i><i></i><span>roey-fit.co.il</span></div>
+                    <div class="browser__screen browser__screen--3"></div>
+                  </div>
+                </div>
+                <div class="cgal__cap">
+                  <span class="cgal__kicker">אתר עסק</span>
+                  <h3 class="cgal__title">רועי שמש — אימון אישי</h3>
+                </div>
+              </article>
+              <article class="cgal__item">
+                <div class="cgal__media">
+                  <div class="browser browser--showcase cgal__browser">
+                    <div class="browser__bar"><i></i><i></i><i></i><span>klix.co.il</span></div>
+                    <div class="browser__screen browser__screen--2"></div>
+                  </div>
+                </div>
+                <div class="cgal__cap">
+                  <span class="cgal__kicker">דף עסק + ריטיינר</span>
+                  <h3 class="cgal__title">KLIX — דפי נחיתה כשירות</h3>
+                </div>
+              </article>
+              <!-- Set 2 — identical, duplicated for seamless CSS marquee loop -->
+              <article class="cgal__item" aria-hidden="true">
+                <div class="cgal__media">
+                  <img
+                    src="1195469_OT11BC1-min.png"
+                    alt=""
+                    decoding="async"
+                    draggable="false"
+                  />
+                </div>
+                <div class="cgal__cap">
+                  <span class="cgal__kicker">אתר תדמית</span>
+                  <h3 class="cgal__title">אתר הנצחה 7.10</h3>
+                </div>
+              </article>
+              <article class="cgal__item" aria-hidden="true">
+                <div class="cgal__media">
+                  <div class="browser browser--showcase cgal__browser">
+                    <div class="browser__bar"><i></i><i></i><i></i><span>roey-fit.co.il</span></div>
+                    <div class="browser__screen browser__screen--3"></div>
+                  </div>
+                </div>
+                <div class="cgal__cap">
+                  <span class="cgal__kicker">אתר עסק</span>
+                  <h3 class="cgal__title">רועי שמש — אימון אישי</h3>
+                </div>
+              </article>
+              <article class="cgal__item" aria-hidden="true">
+                <div class="cgal__media">
+                  <div class="browser browser--showcase cgal__browser">
+                    <div class="browser__bar"><i></i><i></i><i></i><span>klix.co.il</span></div>
+                    <div class="browser__screen browser__screen--2"></div>
+                  </div>
+                </div>
+                <div class="cgal__cap">
+                  <span class="cgal__kicker">דף עסק + ריטיינר</span>
+                  <h3 class="cgal__title">KLIX — דפי נחיתה כשירות</h3>
+                </div>
+              </article>
             </div>
-            <div class="project__body">
-              <span class="project__kicker">דף עסק + ריטיינר</span>
-              <h3 class="project__title">KLIX — דפי נחיתה כשירות</h3>
-              <p>
-                הדף שאתה קורא עכשיו. דוגמא חיה לאיך מבנה דף, היררכיית מסרים
-                ופוקוס על פעולה אחת מובילים את הליד מטופ-אוף-פנל ועד שיחה
-                בוואטסאפ — בלי מעבר בין מסכים מיותרים.
-              </p>
-              <ul class="project__meta">
-                <li>שלוש אישיויות, מסר אחד</li>
-                <li>אנימציות עדינות</li>
-                <li>נגישות + ביצועים</li>
-              </ul>
-            </div>
-          </article>
+          </div>
         </div>
       </div>
     </section>
@@ -414,7 +621,7 @@
     <section class="section testi" id="testi" aria-labelledby="testi-heading">
       <div class="container">
         <div class="section__head" data-reveal>
-          <h2 id="testi-heading">מה שעובד לאחרים. בלשון שלהם.</h2>
+          <h2 id="testi-heading">לקוחות מתלוננים עליי</h2>
         </div>
       </div>
 
@@ -557,10 +764,9 @@
       <div class="contact__grid" aria-hidden="true"></div>
       <div class="container contact__inner" data-reveal>
         <header class="contact__head">
-          <h2 id="contact-heading">אז.. שנדבר?</h2>
+          <h2 id="contact-heading">?אז.. שנדבר</h2>
           <p class="contact__sub">
-            זה הזמן לקחת את העסק שלך צעד אחד קדימה לעבר
-            <strong>הצלחה אמיתית!</strong>
+            !זה הזמן לקחת את העסק שלך צעד אחד קדימה לעבר הצלחה אמיתית
           </p>
         </header>
 
@@ -579,77 +785,82 @@
           <span>או השאירו פרטים לייעוץ</span>
         </div>
 
-        <form class="contact__form" action="#" method="post" novalidate>
-          <p class="contact__hint">
-            יש להשאיר פרטים בטופס ואדאג לחזור אליך תוך 2 ימי עסקים, ביחד ניקח
-            את הנראות הדיגיטלית שלך לרמה הבאה!
-          </p>
+        <div class="contact__panel">
+          <form class="contact__form" action="#" method="post" novalidate>
+            <p class="contact__hint">
+              !יש להשאיר פרטים בטופס ואדאג לחזור אליך תוך 2 ימי עסקים, ביחד ניקח
+              את הנראות הדיגיטלית שלך לרמה הבאה
+            </p>
 
-          <div class="contact__row">
-            <label class="contact__field">
-              <span class="visually-hidden">שם מלא</span>
-              <input type="text" name="name" placeholder="מה השם?" required autocomplete="name" />
+            <div class="contact__row">
+              <label class="contact__field">
+                <span class="visually-hidden">שם מלא</span>
+                <input type="text" name="name" placeholder="מה השם?" required autocomplete="name" />
+              </label>
+              <label class="contact__field">
+                <span class="visually-hidden">אימייל</span>
+                <input type="email" name="email" placeholder="האימייל הכי טוב שלך" required autocomplete="email" />
+              </label>
+              <label class="contact__field">
+                <span class="visually-hidden">טלפון</span>
+                <input type="tel" name="phone" placeholder="הטלפון הכי טוב שלך" required autocomplete="tel" />
+              </label>
+            </div>
+
+            <label class="contact__field contact__field--ta">
+              <span class="visually-hidden">הודעה</span>
+              <textarea name="message" rows="4" placeholder=";) רוצה לכתוב לי משהו? לא חייב"></textarea>
             </label>
-            <label class="contact__field">
-              <span class="visually-hidden">אימייל</span>
-              <input type="email" name="email" placeholder="האימייל הכי טוב שלך" required autocomplete="email" />
+
+            <label class="contact__check">
+              <input type="checkbox" name="agree" required />
+              <span>
+                קראתי ואני מאשר את
+                <a href="#" target="_blank" rel="noopener">מדיניות הפרטיות</a>
+                וקבלת דיוור מ־KLIX
+              </span>
             </label>
-            <label class="contact__field">
-              <span class="visually-hidden">טלפון</span>
-              <input type="tel" name="phone" placeholder="הטלפון הכי טוב שלך" required autocomplete="tel" />
-            </label>
-          </div>
 
-          <label class="contact__field contact__field--ta">
-            <span class="visually-hidden">הודעה</span>
-            <textarea name="message" rows="4" placeholder="רוצה לכתוב לי משהו? לא חייב ;)"></textarea>
-          </label>
+            <button type="submit" class="contact__submit">
+              !אשמח לקבל ייעוץ מקצועי
+            </button>
+          </form>
 
-          <label class="contact__check">
-            <input type="checkbox" name="agree" required />
-            <span>
-              קראתי ואני מאשר את
-              <a href="#" target="_blank" rel="noopener">מדיניות הפרטיות</a>
-              וקבלת דיוור מ־KLIX
-            </span>
-          </label>
-
-          <button type="submit" class="contact__submit">
-            אשמח לקבל ייעוץ מקצועי!
-          </button>
-        </form>
-
-        <ul class="contact__methods" aria-label="דרכים נוספות ליצירת קשר">
-          <li>
-            <a href="mailto:hello@klix.co.il" class="contact__method">
-              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-                <path fill="currentColor" d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm0 4.2V18h16V8.2l-8 5-8-5Zm0-2.2 8 5 8-5H4Z"/>
-              </svg>
-              <span>hello@klix.co.il</span>
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://wa.me/972526331295?text=%D7%94%D7%99%D7%99%20KLIX%2C%20%D7%91%D7%90%D7%AA%D7%99%20%D7%9E%D7%90%D7%AA%D7%A8%20%D7%94%D7%91%D7%99%D7%AA%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%99%D7%97%D7%AA%20%D7%94%D7%99%D7%9B%D7%A8%D7%95%D7%AA."
-              target="_blank"
-              rel="noopener noreferrer"
-              class="contact__method"
-            >
-              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-                <path fill="currentColor" d="M20.5 3.5A11.77 11.77 0 0 0 12 0C5.4 0 .1 5.4.1 12a11.9 11.9 0 0 0 1.6 6L0 24l6.2-1.6A11.9 11.9 0 0 0 12 24c6.6 0 11.9-5.4 11.9-12 0-3.2-1.3-6.2-3.4-8.5ZM12 22a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.9 9.9 0 1 1 12 22Z"/>
-              </svg>
-              <span>לייעוץ בוואטסאפ</span>
-            </a>
-          </li>
-          <li>
-            <a href="tel:+972526331295" class="contact__method">
-              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-                <path fill="currentColor" d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1l-2.22 2.23Z"/>
-              </svg>
-              <span>052-633-1295</span>
-            </a>
-          </li>
-        </ul>
+          <ul class="contact__methods" aria-label="דרכים נוספות ליצירת קשר">
+            <li>
+              <a href="tel:+972526331295" class="contact__method">
+                <span>052-633-1295</span>
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                  <path fill="currentColor" d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1l-2.22 2.23Z"/>
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://wa.me/972526331295?text=%D7%94%D7%99%D7%99%20KLIX%2C%20%D7%91%D7%90%D7%AA%D7%99%20%D7%9E%D7%90%D7%AA%D7%A8%20%D7%94%D7%91%D7%99%D7%AA%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%99%D7%97%D7%AA%20%D7%94%D7%99%D7%9B%D7%A8%D7%95%D7%AA."
+                target="_blank"
+                rel="noopener noreferrer"
+                class="contact__method"
+              >
+                <span>לייעוץ בוואטסאפ</span>
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                  <path
+                    fill="currentColor"
+                    d="M20.5 3.5A11.77 11.77 0 0 0 12 0C5.4 0 .1 5.4.1 12a11.9 11.9 0 0 0 1.6 6L0 24l6.2-1.6A11.9 11.9 0 0 0 12 24c6.6 0 11.9-5.4 11.9-12 0-3.2-1.3-6.2-3.4-8.5ZM12 22a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.9 9.9 0 1 1 12 22Zm5.4-7.4c-.3-.2-1.8-.9-2-1s-.5-.2-.8.1-.9 1-1 1.2-.3.2-.6 0a8.1 8.1 0 0 1-4-3.5c-.3-.5.3-.5.8-1.5a.6.6 0 0 0 0-.6c0-.1-.8-1.9-1-2.6-.3-.7-.5-.6-.8-.6H7.5a1.3 1.3 0 0 0-1 .4 4 4 0 0 0-1.3 3 7 7 0 0 0 1.4 3.7c.2.2 2.5 3.8 6 5.3a19.5 19.5 0 0 0 2 .7 4.9 4.9 0 0 0 2.1.1 3.6 3.6 0 0 0 2.4-1.7 3 3 0 0 0 .2-1.7c-.1-.2-.3-.3-.7-.5Z"
+                  />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a href="mailto:hello@klix.co.il" class="contact__method">
+                <span>hello@klix.co.il</span>
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                  <path fill="currentColor" d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm0 4.2V18h16V8.2l-8 5-8-5Zm0-2.2 8 5 8-5H4Z"/>
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </section>
 
@@ -680,6 +891,6 @@
       </div>
     </footer>
 
-    <script src="./script.js?v=7"></script>
+    <script src="./script.js?v=11"></script>
   </body>
 </html>
