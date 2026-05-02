@@ -1,0 +1,685 @@
+﻿<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KLIX — דפי נחיתה שסוגרים לקוחות</title>
+    <meta
+      name="description"
+      content="דף עסק דיגיטלי שמחמם לידים לפני וואטסאפ ומעלה אחוזי סגירה לנותני שירות. אספקה תוך 48 שעות."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css?v=54" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">דלג לתוכן</a>
+    <a class="sticky-wa" href="#contact" aria-label="וואטסאפ">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+        <path
+          fill="currentColor"
+          d="M20.5 3.5A11.77 11.77 0 0 0 12 0C5.4 0 .1 5.4.1 12a11.9 11.9 0 0 0 1.6 6L0 24l6.2-1.6A11.9 11.9 0 0 0 12 24c6.6 0 11.9-5.4 11.9-12 0-3.2-1.3-6.2-3.4-8.5ZM12 22a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.9 9.9 0 1 1 12 22Zm5.4-7.4c-.3-.2-1.8-.9-2-1s-.5-.2-.8.1-.9 1-1 1.2-.3.2-.6 0a8.1 8.1 0 0 1-4-3.5c-.3-.5.3-.5.8-1.5a.6.6 0 0 0 0-.6c0-.1-.8-1.9-1-2.6-.3-.7-.5-.6-.8-.6H7.5a1.3 1.3 0 0 0-1 .4 4 4 0 0 0-1.3 3 7 7 0 0 0 1.4 3.7c.2.2 2.5 3.8 6 5.3a19.5 19.5 0 0 0 2 .7 4.9 4.9 0 0 0 2.1.1 3.6 3.6 0 0 0 2.4-1.7 3 3 0 0 0 .2-1.7c-.1-.2-.3-.3-.7-.5Z"
+        />
+      </svg>
+      <span>שלח הודעה</span>
+    </a>
+
+    <a class="sticky-chat" href="#contact" aria-label="פתח צ'אט">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+        <path
+          fill="currentColor"
+          d="M4 4h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-9l-5 4v-4H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm4 6h2v2H8v-2Zm4 0h2v2h-2v-2Zm4 0h2v2h-2v-2Z"
+        />
+      </svg>
+      <span class="sticky-chat__badge" aria-hidden="true">1</span>
+    </a>
+
+    <nav class="nav" aria-hidden="true">
+      <a href="#top" class="nav__brand" aria-label="KLIX">
+        <img class="nav__logo-img" src="logo.png" alt="" width="120" height="40" />
+      </a>
+      <div class="nav__links">
+        <a href="#projects">פרויקטים</a>
+        <a href="#testi">לקוחות</a>
+        <a href="#contact">צור קשר</a>
+      </div>
+      <a href="#contact" class="nav__cta">וואטסאפ ←</a>
+    </nav>
+
+    <div
+      class="menu-overlay"
+      id="menuOverlay"
+      aria-hidden="true"
+      role="dialog"
+      aria-modal="true"
+      aria-label="תפריט"
+    >
+      <nav class="menu-overlay__inner" aria-label="ניווט">
+        <a href="#why">למה דף נחיתה</a>
+        <a href="#solution">מה הוא עושה</a>
+        <a href="#offer">המודל</a>
+        <a href="#projects">פרויקטים אחרונים</a>
+        <a href="#testi">המלצות לקוחות</a>
+        <a href="#contact" class="menu-overlay__cta">השאר פרטים ←</a>
+      </nav>
+    </div>
+
+    <main id="main" tabindex="-1" aria-label="תוכן עמוד">
+    <section class="hero" id="top">
+      <div class="hero__bg-grid" aria-hidden="true"></div>
+      <div class="hero__bg-glow hero__bg-glow--1" aria-hidden="true"></div>
+      <div class="hero__bg-glow hero__bg-glow--2" aria-hidden="true"></div>
+      <div class="hero__bg-glow hero__bg-glow--3" aria-hidden="true"></div>
+
+      <header class="hero__top">
+        <a href="#top" class="hero__logo" aria-label="KLIX">
+          <img
+            class="hero__logo-img"
+            src="logo.png"
+            alt=""
+            width="140"
+            height="48"
+            loading="eager"
+          />
+        </a>
+        <button
+          type="button"
+          class="hero__menu"
+          id="menuBtn"
+          aria-label="פתח תפריט"
+          aria-expanded="false"
+          aria-controls="menuOverlay"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </header>
+
+      <div class="hero__kicker">דפי נחיתה לנותני שירות · ללא עלות הקמה</div>
+
+      <h1 class="hero__title">
+        <span class="hero__title-line">דף אחד.</span>
+        <span class="hero__title-line hero__title-line--accent">
+          לידים שמגיעים מוכנים.
+        </span>
+      </h1>
+
+      <div class="hero__figure-wrap" aria-hidden="true">
+        <div class="hero__figure-halo"></div>
+        <img class="hero__figure" src="./heropicture.png" alt="" />
+      </div>
+
+      <div class="hero__browsers" aria-hidden="true">
+        <div class="browser browser--side browser--left">
+          <div class="browser__bar">
+            <i></i><i></i><i></i>
+            <span>yael-aesthetic.co.il</span>
+          </div>
+          <div class="browser__screen browser__screen--1"></div>
+        </div>
+        <div class="browser browser--mid">
+          <div class="browser__bar">
+            <i></i><i></i><i></i>
+            <span>klix.co.il</span>
+          </div>
+          <div class="browser__screen browser__screen--2"></div>
+        </div>
+        <div class="browser browser--side browser--right">
+          <div class="browser__bar">
+            <i></i><i></i><i></i>
+            <span>roey-fit.co.il</span>
+          </div>
+          <div class="browser__screen browser__screen--3"></div>
+        </div>
+      </div>
+
+      <a class="hero__scroll" href="#why" aria-label="גלול למטה">
+        <span class="hero__scroll-mouse" aria-hidden="true">
+          <span class="hero__scroll-wheel"></span>
+        </span>
+      </a>
+    </section>
+
+    <section class="section argument" id="why" aria-labelledby="why-heading">
+      <div class="container">
+        <div class="argument__intro" data-reveal>
+          <h2 id="why-heading" class="argument__title">
+            יש לכם עסק טוב. לקוחות מרוצים.
+            <span class="argument__title-accent">אולי אפילו קמפיין שרץ.</span>
+          </h2>
+          <p class="argument__sub">
+            אבל בפועל? הלידים מגיעים מבולבלים, שואלים "כמה עולה?", נעלמים — או
+            נכנסים לוואטסאפ לפני שהם בכלל הבינו מי אתם.
+          </p>
+        </div>
+
+        <ul class="argument__nope" data-reveal data-delay="120" aria-label="מה לא יפתור את זה">
+          <li class="argument__nope-row">
+            <strong>עוד פוסט</strong>
+            <span>לא יפתור את זה.</span>
+          </li>
+          <li class="argument__nope-row">
+            <strong>עוד סטורי</strong>
+            <span>לא יבנה אמון.</span>
+          </li>
+          <li class="argument__nope-row">
+            <strong>עוד רילס</strong>
+            <span>לא יסביר למה דווקא אתם.</span>
+          </li>
+        </ul>
+
+        <div class="argument__pivot" data-reveal data-delay="220">
+          <p class="argument__pivot-line">הבעיה היא לא בפרסום.</p>
+          <p class="argument__pivot-line argument__pivot-line--strong">
+            הבעיה היא <span class="argument__pivot-mark">לאן הפרסום נוחת.</span>
+          </p>
+          <p class="argument__pivot-sub">
+            היום כולם מפרסמים. כולם נראים דומים. כולם אומרים "אמינות, מקצועיות
+            ושירות". אבל לקוח שלא סומך עליכם תוך כמה שניות — פשוט ממשיך הלאה.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section solution" id="solution" aria-labelledby="solution-heading">
+      <div class="container">
+        <div class="solution__head" data-reveal>
+          <h2 id="solution-heading">בדיוק בשביל זה יש דף נחיתה.</h2>
+          <p class="solution__sub">דף אחד שמסביר בצורה חדה, בלי בלגן, בלי מבוכים.</p>
+        </div>
+
+        <ol class="solution__grid" aria-label="מה דף הנחיתה עושה">
+          <li class="solution__item" data-reveal>
+            <span class="solution__num">01</span>
+            <h3 class="solution__title">מי אתם</h3>
+            <p>הסיפור, האישיות והנקודה שבה הלקוח מתחיל לסמוך.</p>
+          </li>
+          <li class="solution__item" data-reveal data-delay="80">
+            <span class="solution__num">02</span>
+            <h3 class="solution__title">מה אתם עושים</h3>
+            <p>השירות בשפה ברורה — בלי באזז־וורדס שאף אחד לא קונה.</p>
+          </li>
+          <li class="solution__item" data-reveal data-delay="160">
+            <span class="solution__num">03</span>
+            <h3 class="solution__title">למי זה מתאים</h3>
+            <p>סינון אמיתי. הלקוחות הנכונים פונים, השאר ממשיכים הלאה.</p>
+          </li>
+          <li class="solution__item" data-reveal data-delay="240">
+            <span class="solution__num">04</span>
+            <h3 class="solution__title">למה לסמוך עליכם</h3>
+            <p>המלצות, תוצאות, סמלי אמון — שכבת ביטחון לפני השיחה.</p>
+          </li>
+          <li class="solution__item" data-reveal data-delay="320">
+            <span class="solution__num">05</span>
+            <h3 class="solution__title">איך נראה התהליך</h3>
+            <p>שלב אחר שלב, ברור מראש — בלי הפתעות, בלי "שולח הצעת מחיר".</p>
+          </li>
+          <li class="solution__item" data-reveal data-delay="400">
+            <span class="solution__num">06</span>
+            <h3 class="solution__title">איך פונים</h3>
+            <p>טופס מסונן או וואטסאפ — בנקודה שבה הלקוח כבר מוכן.</p>
+          </li>
+        </ol>
+
+        <p class="solution__verdict" data-reveal>
+          לא אתר מסובך. לא עוד כרטיס ביקור.
+          <strong>שכבת אמון לפני וואטסאפ.</strong>
+        </p>
+
+        <p class="solution__outcome" data-reveal>
+          ככה הקמפיין שלכם <strong>לא נופל ישר לוואטסאפ קר</strong> — אלא למקום
+          שבונה אמון, מסנן מתעניינים לא רציניים, ומביא פניות בשלות יותר.
+        </p>
+      </div>
+    </section>
+
+    <section class="section offer" id="offer" aria-labelledby="offer-heading">
+      <div class="container">
+        <div class="offer__head" data-reveal>
+          <h2 id="offer-heading" class="offer__title">
+            דף נחיתה לנותני שירות.
+            <span class="offer__title-accent">בחרו את המסלול שלכם.</span>
+          </h2>
+          <p class="offer__sub">
+            ללא עלות הקמה. משלמים רק על תחזוקה ושיפורים חודשיים — והדף ממשיך
+            להשתפר חודש אחרי חודש.
+          </p>
+        </div>
+
+        <!-- TIERS: prices/features below are placeholders — update to your actual pricing. -->
+        <div class="tiers" data-reveal data-delay="100" aria-label="מסלולי תחזוקה">
+          <article class="tier">
+            <h3 class="tier__name">בסיסי</h3>
+            <p class="tier__tagline">לעסק שצריך נוכחות דיגיטלית מקצועית ויציבה.</p>
+            <div class="tier__amount">
+              <span class="tier__currency">₪</span>
+              <span class="tier__num">290</span>
+              <span class="tier__period">/ לחודש</span>
+            </div>
+            <div class="tier__divider" aria-hidden="true"></div>
+            <ul class="tier__list">
+              <li>דף נחיתה אחד, רספונסיבי</li>
+              <li>אחסון, דומיין ו־SSL</li>
+              <li>תחזוקה ועדכוני אבטחה</li>
+              <li class="tier__list-muted">ללא שיפורים חודשיים</li>
+              <li class="tier__list-muted">ללא A/B Testing</li>
+            </ul>
+            <a class="tier__cta" href="#contact">בואו נתחיל</a>
+          </article>
+
+          <article class="tier tier--featured">
+            <span class="tier__badge">הכי פופולרי</span>
+            <h3 class="tier__name">מקצועי</h3>
+            <p class="tier__tagline">הדף עובד בשבילכם — ומשתפר חודש אחרי חודש.</p>
+            <div class="tier__amount">
+              <span class="tier__currency">₪</span>
+              <span class="tier__num">590</span>
+              <span class="tier__period">/ לחודש</span>
+            </div>
+            <div class="tier__divider" aria-hidden="true"></div>
+            <ul class="tier__list">
+              <li>כל מה שיש בבסיסי</li>
+              <li>שיפורים חודשיים בקופי ובעיצוב</li>
+              <li>A/B Testing על אלמנטים מרכזיים</li>
+              <li>אנליטיקס + דוח חודשי</li>
+              <li>תמיכה תוך יום עסקים</li>
+            </ul>
+            <a
+              class="tier__cta"
+              href="https://tally.so/r/gDQO9N"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              למלא טופס אפיון ←
+            </a>
+          </article>
+
+          <article class="tier">
+            <h3 class="tier__name">פרימיום</h3>
+            <p class="tier__tagline">פאנל שיווקי מלא לעסק שמייצר לידים בקצב גבוה.</p>
+            <div class="tier__amount">
+              <span class="tier__currency">₪</span>
+              <span class="tier__num">990</span>
+              <span class="tier__period">/ לחודש</span>
+            </div>
+            <div class="tier__divider" aria-hidden="true"></div>
+            <ul class="tier__list">
+              <li>כל מה שיש במקצועי</li>
+              <li>עד 3 דפי נחיתה / מודולים</li>
+              <li>אינטגרציות (CRM, פיקסל, וובהוקים)</li>
+              <li>אופטימיזציה שבועית</li>
+              <li>תמיכה מועדפת בוואטסאפ</li>
+            </ul>
+            <a class="tier__cta" href="#contact">לדבר על פרימיום</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section projects" id="projects" aria-labelledby="projects-heading">
+      <div class="container">
+        <div class="section__head section__head--accent" data-reveal>
+          <h2 id="projects-heading">פרויקטים <span class="ink">אחרונים</span><span class="dot-mark" aria-hidden="true"></span></h2>
+          <p class="section__sub">דוגמאות לדפי עסק ודפי נחיתה שעלו לאוויר ומריצים קמפיינים בפועל.</p>
+        </div>
+
+        <div class="projects__list">
+          <article class="project project--feature" data-reveal>
+            <div class="project__visual project__visual--mockup">
+              <div class="project__glow" aria-hidden="true"></div>
+              <img
+                class="project__shot"
+                src="1195469_OT11BC1-min.png"
+                alt="תצוגת אתר הנצחה 7.10 על מסך iMac"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="project__body">
+              <span class="project__kicker">אתר תדמית</span>
+              <h3 class="project__title">אתר הנצחה 7.10</h3>
+              <p>
+                בעקבות אירועי ה־7 לאוקטובר, ביוזמה אישית ובשיתוף פעולה עם
+                יצרנית עמוד האינסטגרם המוכר Weremember710, הקמנו אתר הנצחה
+                בו ניתן לצפות ולקבל מידע על הנופלים של השבת השחורה.
+              </p>
+              <ul class="project__meta">
+                <li>UX מותאם תוכן רגיש</li>
+                <li>חיפוש וסינון לפי שם</li>
+                <li>טפסי תרומות והנצחה</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="project project--reverse" data-reveal data-delay="120">
+            <div class="project__visual">
+              <div class="browser browser--showcase">
+                <div class="browser__bar">
+                  <i></i><i></i><i></i>
+                  <span>roey-fit.co.il</span>
+                </div>
+                <div class="browser__screen browser__screen--3"></div>
+              </div>
+            </div>
+            <div class="project__body">
+              <span class="project__kicker">אתר עסק לנותן שירות</span>
+              <h3 class="project__title">רועי שמש — אימון אישי</h3>
+              <p>
+                אתר עסק דיגיטלי שמחמם את הליד לפני השיחה: סיפור אישי, פילוסופית
+                האימון, חבילות מחיר ברורות וטופס פנייה ישיר. תוך חודש הצליח רועי
+                להפסיק לשפוך תקציב על שיחות לא רלוונטיות.
+              </p>
+              <ul class="project__meta">
+                <li>קופי שמתמיין</li>
+                <li>גלריית לפני/אחרי</li>
+                <li>טופס לידים מסונן</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="project" data-reveal data-delay="240">
+            <div class="project__visual">
+              <div class="browser browser--showcase">
+                <div class="browser__bar">
+                  <i></i><i></i><i></i>
+                  <span>klix.co.il</span>
+                </div>
+                <div class="browser__screen browser__screen--2"></div>
+              </div>
+            </div>
+            <div class="project__body">
+              <span class="project__kicker">דף עסק + ריטיינר</span>
+              <h3 class="project__title">KLIX — דפי נחיתה כשירות</h3>
+              <p>
+                הדף שאתה קורא עכשיו. דוגמא חיה לאיך מבנה דף, היררכיית מסרים
+                ופוקוס על פעולה אחת מובילים את הליד מטופ-אוף-פנל ועד שיחה
+                בוואטסאפ — בלי מעבר בין מסכים מיותרים.
+              </p>
+              <ul class="project__meta">
+                <li>שלוש אישיויות, מסר אחד</li>
+                <li>אנימציות עדינות</li>
+                <li>נגישות + ביצועים</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section testi" id="testi" aria-labelledby="testi-heading">
+      <div class="container">
+        <div class="section__head" data-reveal>
+          <h2 id="testi-heading">מה שעובד לאחרים. בלשון שלהם.</h2>
+        </div>
+      </div>
+
+      <div
+        class="testi-marquee"
+        data-reveal
+        role="region"
+        aria-label="המלצות לקוחות"
+        tabindex="0"
+      >
+        <div class="testi-marquee__row">
+          <div class="testi-marquee__group">
+            <article class="tcard">
+              <p>"סגרתי 4 לקוחות בשבוע הראשון מאז שעברנו לדף של KLIX. השיחות מגיעות הרבה יותר מוכנות."</p>
+              <footer class="tcard__foot">
+                <div class="tcard__av" style="--ava:#4caf50">ל</div>
+                <div class="tcard__who"><strong>ליאב בן־ארי</strong><span>ליווי יזמים</span></div>
+              </footer>
+            </article>
+            <article class="tcard">
+              <p>"הפסקתי להסביר מי אני בכל שיחה. הלידים מגיעים אחרי שקראו הכל וסוגרים מהר."</p>
+              <footer class="tcard__foot">
+                <div class="tcard__av" style="--ava:#f5a623">ז</div>
+                <div class="tcard__who"><strong>זיו רוטמן</strong><span>טיפול רגשי / NLP</span></div>
+              </footer>
+            </article>
+            <article class="tcard">
+              <p>"תוך 48 שעות היה לי דף חי עם קופי מדויק. יחס ההמרה של הקמפיין עלה פי 3."</p>
+              <footer class="tcard__foot">
+                <div class="tcard__av" style="--ava:#7bb2ff">י</div>
+                <div class="tcard__who"><strong>יעל דיין</strong><span>קליניקת אסתטיקה</span></div>
+              </footer>
+            </article>
+            <article class="tcard">
+              <p>"הדף עושה את העבודה לפני השיחה — אני נכנסת לשיחה כשכבר יש לי לקוחה כמעט בפנים."</p>
+              <footer class="tcard__foot">
+                <div class="tcard__av" style="--ava:#5cd6dc">ש</div>
+                <div class="tcard__who"><strong>שני אזולאי</strong><span>סטודיו לעיצוב פנים</span></div>
+              </footer>
+            </article>
+          </div>
+          <div class="testi-marquee__group" aria-hidden="true">
+            <article class="tcard">
+              <p>"סגרתי 4 לקוחות בשבוע הראשון מאז שעברנו לדף של KLIX. השיחות מגיעות הרבה יותר מוכנות."</p>
+              <footer class="tcard__foot">
+                <div class="tcard__av" style="--ava:#4caf50">ל</div>
+                <div class="tcard__who"><strong>ליאב בן־ארי</strong><span>ליווי יזמים</span></div>
+              </footer>
+            </article>
+            <article class="tcard">
+              <p>"הפסקתי להסביר מי אני בכל שיחה. הלידים מגיעים אחרי שקראו הכל וסוגרים מהר."</p>
+              <footer class="tcard__foot">
+                <div class="tcard__av" style="--ava:#f5a623">ז</div>
+                <div class="tcard__who"><strong>זיו רוטמן</strong><span>טיפול רגשי / NLP</span></div>
+              </footer>
+            </article>
+            <article class="tcard">
+              <p>"תוך 48 שעות היה לי דף חי עם קופי מדויק. יחס ההמרה של הקמפיין עלה פי 3."</p>
+              <footer class="tcard__foot">
+                <div class="tcard__av" style="--ava:#7bb2ff">י</div>
+                <div class="tcard__who"><strong>יעל דיין</strong><span>קליניקת אסתטיקה</span></div>
+              </footer>
+            </article>
+            <article class="tcard">
+              <p>"הדף עושה את העבודה לפני השיחה — אני נכנסת לשיחה כשכבר יש לי לקוחה כמעט בפנים."</p>
+              <footer class="tcard__foot">
+                <div class="tcard__av" style="--ava:#5cd6dc">ש</div>
+                <div class="tcard__who"><strong>שני אזולאי</strong><span>סטודיו לעיצוב פנים</span></div>
+              </footer>
+            </article>
+          </div>
+        </div>
+
+        <div class="testi-marquee__row testi-marquee__row--reverse">
+          <div class="testi-marquee__group">
+            <article class="tcard">
+              <p>"הכי אהבתי שזה לא חד־פעמי. כל שינוי — מטופל מהר, בלי כאב ראש, בלי הצעות מחיר."</p>
+              <footer class="tcard__foot">
+                <div class="tcard__av" style="--ava:#e06abf">ר</div>
+                <div class="tcard__who"><strong>רועי שמש</strong><span>אימון אישי</span></div>
+              </footer>
+            </article>
+            <article class="tcard">
+              <p>"המייל הראשון שקיבלתי מליד היה 'ראיתי את הדף, אני בפנים'. זה כל הסיפור."</p>
+              <footer class="tcard__foot">
+                <div class="tcard__av" style="--ava:#8ec4c8">ע</div>
+                <div class="tcard__who"><strong>עומר ברק</strong><span>קואצ'ר עסקי</span></div>
+              </footer>
+            </article>
+            <article class="tcard">
+              <p>"חסכתי שעות של שיחות חינם. מי שמתקשר אחרי שקרא — מתקשר כדי להתחיל."</p>
+              <footer class="tcard__foot">
+                <div class="tcard__av" style="--ava:#b6e3e6">נ</div>
+                <div class="tcard__who"><strong>נועה גרינברג</strong><span>דיאטנית קלינית</span></div>
+              </footer>
+            </article>
+            <article class="tcard">
+              <p>"היה לי דף ישן שלא הביא כלום. תוך שבוע ראיתי לידים ראויים שמגיעים לבד."</p>
+              <footer class="tcard__foot">
+                <div class="tcard__av" style="--ava:#f0c14a">ד</div>
+                <div class="tcard__who"><strong>דניאל חדד</strong><span>שיפוצניק עסקי</span></div>
+              </footer>
+            </article>
+          </div>
+          <div class="testi-marquee__group" aria-hidden="true">
+            <article class="tcard">
+              <p>"הכי אהבתי שזה לא חד־פעמי. כל שינוי — מטופל מהר, בלי כאב ראש, בלי הצעות מחיר."</p>
+              <footer class="tcard__foot">
+                <div class="tcard__av" style="--ava:#e06abf">ר</div>
+                <div class="tcard__who"><strong>רועי שמש</strong><span>אימון אישי</span></div>
+              </footer>
+            </article>
+            <article class="tcard">
+              <p>"המייל הראשון שקיבלתי מליד היה 'ראיתי את הדף, אני בפנים'. זה כל הסיפור."</p>
+              <footer class="tcard__foot">
+                <div class="tcard__av" style="--ava:#8ec4c8">ע</div>
+                <div class="tcard__who"><strong>עומר ברק</strong><span>קואצ'ר עסקי</span></div>
+              </footer>
+            </article>
+            <article class="tcard">
+              <p>"חסכתי שעות של שיחות חינם. מי שמתקשר אחרי שקרא — מתקשר כדי להתחיל."</p>
+              <footer class="tcard__foot">
+                <div class="tcard__av" style="--ava:#b6e3e6">נ</div>
+                <div class="tcard__who"><strong>נועה גרינברג</strong><span>דיאטנית קלינית</span></div>
+              </footer>
+            </article>
+            <article class="tcard">
+              <p>"היה לי דף ישן שלא הביא כלום. תוך שבוע ראיתי לידים ראויים שמגיעים לבד."</p>
+              <footer class="tcard__foot">
+                <div class="tcard__av" style="--ava:#f0c14a">ד</div>
+                <div class="tcard__who"><strong>דניאל חדד</strong><span>שיפוצניק עסקי</span></div>
+              </footer>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact" aria-labelledby="contact-heading">
+      <div class="contact__grid" aria-hidden="true"></div>
+      <div class="container contact__inner" data-reveal>
+        <header class="contact__head">
+          <h2 id="contact-heading">אז.. שנדבר?</h2>
+          <p class="contact__sub">
+            זה הזמן לקחת את העסק שלך צעד אחד קדימה לעבר
+            <strong>הצלחה אמיתית!</strong>
+          </p>
+        </header>
+
+        <p class="contact__fasttrack-line">
+          יודעים בדיוק מה אתם צריכים?
+          <a
+            href="https://tally.so/r/gDQO9N"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            מלאו את טופס האפיון להקמה מיידית ←
+          </a>
+        </p>
+
+        <div class="contact__divider" aria-hidden="true">
+          <span>או השאירו פרטים לייעוץ</span>
+        </div>
+
+        <form class="contact__form" action="#" method="post" novalidate>
+          <p class="contact__hint">
+            יש להשאיר פרטים בטופס ואדאג לחזור אליך תוך 2 ימי עסקים, ביחד ניקח
+            את הנראות הדיגיטלית שלך לרמה הבאה!
+          </p>
+
+          <div class="contact__row">
+            <label class="contact__field">
+              <span class="visually-hidden">שם מלא</span>
+              <input type="text" name="name" placeholder="מה השם?" required autocomplete="name" />
+            </label>
+            <label class="contact__field">
+              <span class="visually-hidden">אימייל</span>
+              <input type="email" name="email" placeholder="האימייל הכי טוב שלך" required autocomplete="email" />
+            </label>
+            <label class="contact__field">
+              <span class="visually-hidden">טלפון</span>
+              <input type="tel" name="phone" placeholder="הטלפון הכי טוב שלך" required autocomplete="tel" />
+            </label>
+          </div>
+
+          <label class="contact__field contact__field--ta">
+            <span class="visually-hidden">הודעה</span>
+            <textarea name="message" rows="4" placeholder="רוצה לכתוב לי משהו? לא חייב ;)"></textarea>
+          </label>
+
+          <label class="contact__check">
+            <input type="checkbox" name="agree" required />
+            <span>
+              קראתי ואני מאשר את
+              <a href="#" target="_blank" rel="noopener">מדיניות הפרטיות</a>
+              וקבלת דיוור מ־KLIX
+            </span>
+          </label>
+
+          <button type="submit" class="contact__submit">
+            אשמח לקבל ייעוץ מקצועי!
+          </button>
+        </form>
+
+        <ul class="contact__methods" aria-label="דרכים נוספות ליצירת קשר">
+          <li>
+            <a href="mailto:hello@klix.co.il" class="contact__method">
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                <path fill="currentColor" d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm0 4.2V18h16V8.2l-8 5-8-5Zm0-2.2 8 5 8-5H4Z"/>
+              </svg>
+              <span>hello@klix.co.il</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://wa.me/972526331295?text=%D7%94%D7%99%D7%99%20KLIX%2C%20%D7%91%D7%90%D7%AA%D7%99%20%D7%9E%D7%90%D7%AA%D7%A8%20%D7%94%D7%91%D7%99%D7%AA%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%99%D7%97%D7%AA%20%D7%94%D7%99%D7%9B%D7%A8%D7%95%D7%AA."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="contact__method"
+            >
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                <path fill="currentColor" d="M20.5 3.5A11.77 11.77 0 0 0 12 0C5.4 0 .1 5.4.1 12a11.9 11.9 0 0 0 1.6 6L0 24l6.2-1.6A11.9 11.9 0 0 0 12 24c6.6 0 11.9-5.4 11.9-12 0-3.2-1.3-6.2-3.4-8.5ZM12 22a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.9 9.9 0 1 1 12 22Z"/>
+              </svg>
+              <span>לייעוץ בוואטסאפ</span>
+            </a>
+          </li>
+          <li>
+            <a href="tel:+972526331295" class="contact__method">
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                <path fill="currentColor" d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1l-2.22 2.23Z"/>
+              </svg>
+              <span>052-633-1295</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    </main>
+
+    <footer class="foot">
+      <div class="container foot__inner">
+        <div class="foot__brand-line">
+          <img
+            class="foot__logo"
+            src="logo.png"
+            alt="KLIX"
+            width="120"
+            height="40"
+            loading="lazy"
+          />
+          <span class="foot__div mono">//</span>
+          <span class="foot__tag">דפי נחיתה שסוגרים לקוחות.</span>
+        </div>
+        <div class="foot__links">
+          <a href="mailto:hello@klix.co.il">hello@klix.co.il</a>
+          <span class="foot__div mono">·</span>
+          <a href="#">תנאי שימוש</a>
+          <span class="foot__div mono">·</span>
+          <a href="#">מדיניות פרטיות</a>
+        </div>
+        <p class="foot__copy mono">© 2026 KLIX · ALL RIGHTS RESERVED</p>
+      </div>
+    </footer>
+
+    <script src="./script.js?v=7"></script>
+  </body>
+</html>
