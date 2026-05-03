@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./style.css?v=69" />
+    <link rel="stylesheet" href="./style.css?v=70" />
     <style>
       /* KLIX loader — inline so it paints instantly, before style.css loads */
       html.klix-loading,
@@ -538,89 +538,50 @@
           <p class="section__sub">דוגמאות לדפי עסק ודפי נחיתה שעלו לאוויר ומריצים קמפיינים בפועל.</p>
         </div>
 
-        <div class="cgal" id="cgal">
-          <div class="cgal__viewport" id="cgalViewport">
-            <div class="cgal__track" id="cgalTrack">
-              <!-- Set 1 -->
-              <article class="cgal__item">
-                <div class="cgal__media">
-                  <img
-                    src="1195469_OT11BC1-min.png"
-                    alt="אתר הנצחה 7.10"
-                    decoding="async"
-                    draggable="false"
-                  />
-                </div>
-                <div class="cgal__cap">
-                  <span class="cgal__kicker">אתר תדמית</span>
-                  <h3 class="cgal__title">אתר הנצחה 7.10</h3>
-                </div>
-              </article>
-              <article class="cgal__item">
-                <div class="cgal__media">
-                  <div class="browser browser--showcase cgal__browser">
-                    <div class="browser__bar"><i></i><i></i><i></i><span>roey-fit.co.il</span></div>
-                    <div class="browser__screen browser__screen--3"></div>
-                  </div>
-                </div>
-                <div class="cgal__cap">
-                  <span class="cgal__kicker">אתר עסק</span>
-                  <h3 class="cgal__title">רועי שמש — אימון אישי</h3>
-                </div>
-              </article>
-              <article class="cgal__item">
-                <div class="cgal__media">
-                  <div class="browser browser--showcase cgal__browser">
-                    <div class="browser__bar"><i></i><i></i><i></i><span>klix.co.il</span></div>
-                    <div class="browser__screen browser__screen--2"></div>
-                  </div>
-                </div>
-                <div class="cgal__cap">
-                  <span class="cgal__kicker">דף עסק + ריטיינר</span>
-                  <h3 class="cgal__title">KLIX — דפי נחיתה כשירות</h3>
-                </div>
-              </article>
-              <!-- Set 2 — identical, duplicated for seamless CSS marquee loop -->
-              <article class="cgal__item" aria-hidden="true">
-                <div class="cgal__media">
-                  <img
-                    src="1195469_OT11BC1-min.png"
-                    alt=""
-                    decoding="async"
-                    draggable="false"
-                  />
-                </div>
-                <div class="cgal__cap">
-                  <span class="cgal__kicker">אתר תדמית</span>
-                  <h3 class="cgal__title">אתר הנצחה 7.10</h3>
-                </div>
-              </article>
-              <article class="cgal__item" aria-hidden="true">
-                <div class="cgal__media">
-                  <div class="browser browser--showcase cgal__browser">
-                    <div class="browser__bar"><i></i><i></i><i></i><span>roey-fit.co.il</span></div>
-                    <div class="browser__screen browser__screen--3"></div>
-                  </div>
-                </div>
-                <div class="cgal__cap">
-                  <span class="cgal__kicker">אתר עסק</span>
-                  <h3 class="cgal__title">רועי שמש — אימון אישי</h3>
-                </div>
-              </article>
-              <article class="cgal__item" aria-hidden="true">
-                <div class="cgal__media">
-                  <div class="browser browser--showcase cgal__browser">
-                    <div class="browser__bar"><i></i><i></i><i></i><span>klix.co.il</span></div>
-                    <div class="browser__screen browser__screen--2"></div>
-                  </div>
-                </div>
-                <div class="cgal__cap">
-                  <span class="cgal__kicker">דף עסק + ריטיינר</span>
-                  <h3 class="cgal__title">KLIX — דפי נחיתה כשירות</h3>
-                </div>
-              </article>
+        <div class="projects__grid">
+          <article class="pcard">
+            <div class="pcard__media">
+              <img
+                src="1195469_OT11BC1-min.png"
+                alt="אתר הנצחה 7.10"
+                decoding="async"
+                loading="lazy"
+              />
             </div>
-          </div>
+            <div class="pcard__body">
+              <span class="pcard__kicker">אתר תדמית</span>
+              <h3 class="pcard__title">אתר הנצחה 7.10</h3>
+              <p class="pcard__meta">סיפור, נוכחות, ושקט ויזואלי לפרויקט עם משמעות.</p>
+            </div>
+          </article>
+
+          <article class="pcard">
+            <div class="pcard__media">
+              <div class="browser browser--showcase pcard__browser">
+                <div class="browser__bar"><i></i><i></i><i></i><span>roey-fit.co.il</span></div>
+                <div class="browser__screen browser__screen--3"></div>
+              </div>
+            </div>
+            <div class="pcard__body">
+              <span class="pcard__kicker">אתר עסק</span>
+              <h3 class="pcard__title">רועי שמש — אימון אישי</h3>
+              <p class="pcard__meta">דף שמסביר למה דווקא הוא — לפני שלקוח שולח הודעה.</p>
+            </div>
+          </article>
+
+          <article class="pcard">
+            <div class="pcard__media">
+              <div class="browser browser--showcase pcard__browser">
+                <div class="browser__bar"><i></i><i></i><i></i><span>klix.co.il</span></div>
+                <div class="browser__screen browser__screen--2"></div>
+              </div>
+            </div>
+            <div class="pcard__body">
+              <span class="pcard__kicker">דף עסק + ריטיינר</span>
+              <h3 class="pcard__title">KLIX — דפי נחיתה כשירות</h3>
+              <p class="pcard__meta">המוצר עצמו: דף שמתפקד כמכונת לידים מלוטשת.</p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
