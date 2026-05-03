@@ -159,6 +159,36 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
   });
 });
 
+/* ---------------------------------------------------------------
+   Sticky pill nav — hidden over the hero, pinned past it.
+   Uses IntersectionObserver on the hero so the trigger follows
+   actual hero height (incl. dvh quirks on mobile).
+   --------------------------------------------------------------- */
+(function initStickyNav() {
+  const nav = document.querySelector(".nav");
+  const hero = document.querySelector(".hero");
+  if (!nav || !hero) return;
+
+  const setPinned = (pinned) => {
+    nav.classList.toggle("is-pinned", pinned);
+    nav.setAttribute("aria-hidden", pinned ? "false" : "true");
+  };
+
+  setPinned(false);
+
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver(
+      ([entry]) => setPinned(!entry.isIntersecting),
+      { rootMargin: "-72px 0px 0px 0px", threshold: 0 }
+    );
+    io.observe(hero);
+  } else {
+    const onScroll = () => setPinned(window.scrollY > hero.offsetHeight * 0.7);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  }
+})();
+
 const mainEl = document.getElementById("main");
 document.querySelector(".skip-link")?.addEventListener("click", (e) => {
   if (!mainEl) return;
