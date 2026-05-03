@@ -570,8 +570,8 @@ em {
 
 .cta-capsule__pill {
   padding: 10px 22px;
-  background: #a3a0c4;
-  color: #0a0a0a;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-mid) 100%);
+  color: #06121a;
   font-size: clamp(0.95rem, 2.2vw, 1.05rem);
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -584,8 +584,8 @@ em {
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  background: #a3a0c4;
-  color: #0a0a0a;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-mid) 100%);
+  color: #06121a;
   display: grid;
   place-items: center;
 }
@@ -598,8 +598,8 @@ em {
 .cta-capsule:focus-visible .cta-capsule__shell {
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    0 0 0 2px rgba(163, 160, 196, 0.55),
-    0 0 0 4px rgba(51, 51, 54, 0.9);
+    0 0 0 2px rgba(182, 227, 230, 0.55),
+    0 0 0 4px rgba(5, 26, 29, 0.9);
 }
 
 .cta-capsule:hover .cta-capsule__pill,
@@ -1185,8 +1185,9 @@ em {
   inset: 0;
   z-index: 120;
   background:
-    radial-gradient(circle at 50% 32%, rgba(80, 60, 170, 0.55), transparent 62%),
-    rgba(6, 8, 26, 0.95);
+    radial-gradient(900px 500px at 50% 28%, rgba(92, 214, 220, 0.18), transparent 60%),
+    radial-gradient(700px 420px at 20% 80%, rgba(80, 200, 210, 0.10), transparent 65%),
+    rgba(5, 26, 29, 0.96);
   backdrop-filter: blur(22px) saturate(140%);
   -webkit-backdrop-filter: blur(22px) saturate(140%);
   display: grid;
