@@ -217,6 +217,22 @@ document.querySelector(".skip-link")?.addEventListener("click", (e) => {
   if (!status || !submitBtn) return;
 
   const originalLabel = submitBtn.textContent;
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+  const setStatus = (text, kind) => {
+    status.textContent = text;
+    status.classList.remove("is-success", "is-error");
+    if (kind) status.classList.add(`is-${kind}`);
+  };
+
+  const formspreeErrorToHebrew = (err) => {
+    const msg = (err && (err.message || err.code || "")).toString().toLowerCase();
+    if (msg.includes("email")) return "האימייל שהזנת לא נראה תקין. בדקו ושלחו שוב.";
+    if (msg.includes("required")) return "חסר שדה חובה. נא למלא את כל הפרטים.";
+    if (msg.includes("inactive") || msg.includes("not enabled"))
+      return "הטופס עדיין לא הופעל. אם זו ההגדרה הראשונה — אישרו את האימייל מ-Formspree.";
+    return "שליחה נכשלה. אפשר לדבר איתנו בוואטסאפ.";
+  };
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -226,8 +242,14 @@ document.querySelector(".skip-link")?.addEventListener("click", (e) => {
       return;
     }
 
-    status.textContent = "";
-    status.classList.remove("is-success", "is-error");
+    const emailInput = form.querySelector('input[name="email"]');
+    if (emailInput && !EMAIL_RE.test(emailInput.value.trim())) {
+      setStatus("האימייל שהזנת לא נראה תקין. בדקו ושלחו שוב.", "error");
+      emailInput.focus();
+      return;
+    }
+
+    setStatus("", null);
     submitBtn.disabled = true;
     submitBtn.textContent = "...שולח";
 
@@ -237,11 +259,18 @@ document.querySelector(".skip-link")?.addEventListener("click", (e) => {
         body: new FormData(form),
         headers: { Accept: "application/json" },
       });
-      if (!res.ok) throw new Error("network");
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        const firstError = Array.isArray(data?.errors) ? data.errors[0] : null;
+        setStatus(formspreeErrorToHebrew(firstError), "error");
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalLabel;
+        return;
+      }
 
       form.reset();
-      status.textContent = "תודה! נחזור אליך תוך 2 ימי עסקים.";
-      status.classList.add("is-success");
+      setStatus("תודה! נחזור אליך תוך 2 ימי עסקים.", "success");
       submitBtn.textContent = "✓ נשלח";
 
       if (typeof window.plausible === "function") {
@@ -253,8 +282,7 @@ document.querySelector(".skip-link")?.addEventListener("click", (e) => {
         submitBtn.textContent = originalLabel;
       }, 3500);
     } catch {
-      status.textContent = "שליחה נכשלה. אפשר לדבר איתנו בוואטסאפ.";
-      status.classList.add("is-error");
+      setStatus("בעיית רשת — נסו שוב או דברו איתנו בוואטסאפ.", "error");
       submitBtn.disabled = false;
       submitBtn.textContent = originalLabel;
     }
