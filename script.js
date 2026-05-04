@@ -206,10 +206,8 @@ document.querySelector(".skip-link")?.addEventListener("click", (e) => {
 });
 
 /* ---------------------------------------------------------------
-   Contact form — Formsubmit AJAX submission.
-   First-ever submit triggers Formsubmit to email
-   imtidharcrimow@gmail.com asking to "Activate". Click that link
-   once and live leads start flowing.
+   Contact form — Formspree AJAX submission.
+   Endpoint and inbox are configured in the Formspree dashboard.
    --------------------------------------------------------------- */
 (function initContactForm() {
   const form = document.querySelector(".contact__form");
