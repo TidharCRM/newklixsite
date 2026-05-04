@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./style.css?v=75" />
+    <link rel="stylesheet" href="./style.css?v=76" />
     <style>
       /* KLIX loader — inline so it paints instantly, before style.css loads */
       html.klix-loading,
@@ -793,7 +793,24 @@
         </div>
 
         <div class="contact__panel">
-          <form class="contact__form" action="#" method="post" novalidate>
+          <form
+            class="contact__form"
+            action="https://formsubmit.co/ajax/imtidharcrimow@gmail.com"
+            method="POST"
+            novalidate
+          >
+            <input type="hidden" name="_subject" value="ליד חדש מ־KLIX" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input
+              type="text"
+              name="_honey"
+              tabindex="-1"
+              autocomplete="off"
+              aria-hidden="true"
+              class="contact__honey"
+            />
+
             <p class="contact__hint">
               !יש להשאיר פרטים בטופס ואדאג לחזור אליך תוך 2 ימי עסקים, ביחד ניקח
               את הנראות הדיגיטלית שלך לרמה הבאה
@@ -831,6 +848,8 @@
             <button type="submit" class="contact__submit">
               !אשמח לקבל ייעוץ מקצועי
             </button>
+
+            <p class="contact__status" role="status" aria-live="polite"></p>
           </form>
 
           <ul class="contact__methods" aria-label="דרכים נוספות ליצירת קשר">

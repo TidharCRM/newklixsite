@@ -205,3 +205,60 @@ document.querySelector(".skip-link")?.addEventListener("click", (e) => {
   }
 });
 
+/* ---------------------------------------------------------------
+   Contact form — Formsubmit AJAX submission.
+   First-ever submit triggers Formsubmit to email
+   imtidharcrimow@gmail.com asking to "Activate". Click that link
+   once and live leads start flowing.
+   --------------------------------------------------------------- */
+(function initContactForm() {
+  const form = document.querySelector(".contact__form");
+  if (!form) return;
+  const status = form.querySelector(".contact__status");
+  const submitBtn = form.querySelector(".contact__submit");
+  if (!status || !submitBtn) return;
+
+  const originalLabel = submitBtn.textContent;
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    status.textContent = "";
+    status.classList.remove("is-success", "is-error");
+    submitBtn.disabled = true;
+    submitBtn.textContent = "...שולח";
+
+    try {
+      const res = await fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" },
+      });
+      if (!res.ok) throw new Error("network");
+
+      form.reset();
+      status.textContent = "תודה! נחזור אליך תוך 2 ימי עסקים.";
+      status.classList.add("is-success");
+      submitBtn.textContent = "✓ נשלח";
+
+      if (typeof window.plausible === "function") {
+        window.plausible("Lead");
+      }
+
+      setTimeout(() => {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalLabel;
+      }, 3500);
+    } catch {
+      status.textContent = "שליחה נכשלה. אפשר לדבר איתנו בוואטסאפ.";
+      status.classList.add("is-error");
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalLabel;
+    }
+  });
+})();
