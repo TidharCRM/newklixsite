@@ -787,7 +787,11 @@ em {
 .hero {
   position: relative;
   min-height: 100vh;
-  min-height: 100dvh;
+  /* Use svh (small viewport height) so the hero is sized as if iOS
+     Safari's URL bar is visible. This prevents the "jump"/rescale
+     when scrolling up reveals the bar — dvh updates dynamically and
+     causes content to reflow. svh stays stable. */
+  min-height: 100svh;
   padding: 0;
   overflow: hidden;
   isolation: isolate;
