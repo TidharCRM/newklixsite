@@ -3707,8 +3707,9 @@ main > .manifesto figcaption {
 .contact__cta {
   position: relative;
   display: flex;
-  flex-direction: column;
-  gap: 6px;
+  flex-direction: row-reverse;
+  align-items: flex-start;
+  gap: 16px;
   padding: clamp(22px, 2.6vw, 28px) clamp(20px, 2.4vw, 26px);
   text-align: right;
   text-decoration: none;
@@ -3725,6 +3726,46 @@ main > .manifesto figcaption {
     transform 0.32s var(--ease-out),
     border-color 0.32s var(--ease-out),
     box-shadow 0.32s var(--ease-out);
+}
+
+.contact__cta-icon {
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: rgba(182, 227, 230, 0.10);
+  border: 1px solid rgba(182, 227, 230, 0.20);
+  color: var(--accent);
+  transition:
+    transform 0.32s var(--ease-out),
+    background 0.32s var(--ease-out),
+    border-color 0.32s var(--ease-out);
+}
+
+.contact__cta-text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  flex: 1;
+}
+
+.contact__cta-arrow {
+  display: inline-block;
+  margin-inline-start: 6px;
+  transition: transform 0.32s var(--ease-out);
+}
+
+.contact__cta:hover .contact__cta-arrow {
+  transform: translateX(-4px);
+}
+
+.contact__cta:hover .contact__cta-icon {
+  transform: scale(1.06);
+  background: rgba(182, 227, 230, 0.16);
+  border-color: rgba(182, 227, 230, 0.34);
 }
 
 .contact__cta::before {
@@ -3807,8 +3848,40 @@ main > .manifesto figcaption {
     0 0 80px rgba(92, 214, 220, 0.2);
 }
 
+.contact__cta--wa {
+  background:
+    radial-gradient(140% 90% at 0% 0%, rgba(74, 222, 128, 0.12), transparent 55%),
+    linear-gradient(165deg, rgba(255, 255, 255, 0.06) 0%, rgba(10, 45, 50, 0.55) 45%, rgba(5, 22, 26, 0.78) 100%);
+  border-color: rgba(74, 222, 128, 0.22);
+}
+
+.contact__cta--wa::before {
+  background: linear-gradient(155deg,
+    rgba(74, 222, 128, 0.45) 0%,
+    rgba(74, 222, 128, 0.10) 40%,
+    transparent 70%);
+}
+
+.contact__cta--wa:hover {
+  border-color: rgba(74, 222, 128, 0.42);
+  box-shadow:
+    var(--card-shadow-hover),
+    0 0 70px rgba(74, 222, 128, 0.16);
+}
+
 .contact__cta--wa .contact__cta-kicker {
   color: #4ade80;
+}
+
+.contact__cta--wa .contact__cta-icon {
+  background: rgba(74, 222, 128, 0.12);
+  border-color: rgba(74, 222, 128, 0.28);
+  color: #4ade80;
+}
+
+.contact__cta--wa:hover .contact__cta-icon {
+  background: rgba(74, 222, 128, 0.20);
+  border-color: rgba(74, 222, 128, 0.45);
 }
 
 @media (max-width: 640px) {
@@ -3817,55 +3890,60 @@ main > .manifesto figcaption {
 
 .contact__methods {
   list-style: none;
-  margin: clamp(22px, 3vw, 28px) auto 0;
-  padding: clamp(18px, 2.6vw, 22px) 0 0;
+  margin: clamp(28px, 4vw, 40px) auto 0;
+  padding: clamp(22px, 3vw, 26px) 0 0;
   max-width: 720px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  gap: 16px 24px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 10px 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .contact__method {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  flex-direction: row;
-  color: rgba(255, 255, 255, 0.9);
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.85);
   text-decoration: none;
-  font-size: 0.96rem;
-  font-weight: 500;
-  transition: color 0.2s, opacity 0.2s;
+  font-size: 0.94rem;
+  font-weight: 600;
+  transition:
+    color 0.22s var(--ease-out),
+    background 0.22s var(--ease-out),
+    border-color 0.22s var(--ease-out),
+    transform 0.22s var(--ease-out);
 }
 
 .contact__method svg {
-  color: rgba(255, 255, 255, 0.75);
+  color: var(--accent);
   flex-shrink: 0;
-  opacity: 0.95;
+  opacity: 0.9;
+  transition: opacity 0.22s var(--ease-out);
 }
 
 .contact__method:hover {
   color: #fff;
+  background: rgba(182, 227, 230, 0.08);
+  border-color: rgba(182, 227, 230, 0.28);
+  transform: translateY(-1px);
 }
 
 .contact__method:hover svg {
-  color: #dfff70;
+  opacity: 1;
 }
 
-@media (max-width: 720px) {
-  .contact__row {
-    grid-template-columns: 1fr;
-  }
-
+@media (max-width: 480px) {
   .contact__methods {
     flex-direction: column;
-    justify-content: center;
     align-items: stretch;
-    gap: 14px;
+    gap: 8px;
   }
-
   .contact__method {
     justify-content: center;
   }
