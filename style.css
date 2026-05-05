@@ -3691,62 +3691,39 @@ main > .manifesto figcaption {
   line-height: 1.6;
 }
 
-.contact__fasttrack-line {
-  margin: 0 0 22px;
-  text-align: center;
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 1rem;
-  line-height: 1.6;
+/* ---------- CONTACT CTA PAIR ---------- */
+.contact__ctas {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(14px, 2vw, 22px);
+  margin: 0 auto clamp(28px, 4vw, 40px);
+  max-width: 720px;
 }
 
-.contact__fasttrack-line a {
-  color: rgba(223, 255, 112, 0.95);
-  font-weight: 800;
-  text-decoration: none;
-  border-bottom: 1px solid currentColor;
-  padding-bottom: 1px;
-  transition: color 0.25s var(--ease-out);
-}
-
-.contact__fasttrack-line a:hover {
-  color: #fff;
-}
-
-.contact__divider {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin: 0 0 clamp(22px, 3vw, 28px);
-  color: rgba(255, 255, 255, 0.4);
-  font-size: 0.88rem;
-  letter-spacing: 0.02em;
-}
-
-.contact__divider::before,
-.contact__divider::after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.1);
-}
-
-/* Card shell: form + contact strip */
-.contact__panel {
+.contact__cta {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: clamp(22px, 2.6vw, 28px) clamp(20px, 2.4vw, 26px);
   text-align: right;
-  direction: rtl;
+  text-decoration: none;
+  color: inherit;
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: var(--card-radius);
-  padding: clamp(26px, 4vw, 38px) clamp(22px, 3vw, 36px);
-  box-shadow: var(--card-shadow);
   backdrop-filter: var(--card-blur);
   -webkit-backdrop-filter: var(--card-blur);
-  overflow: hidden;
+  box-shadow: var(--card-shadow);
   isolation: isolate;
+  overflow: hidden;
+  transition:
+    transform 0.32s var(--ease-out),
+    border-color 0.32s var(--ease-out),
+    box-shadow 0.32s var(--ease-out);
 }
 
-.contact__panel::before {
+.contact__cta::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -3765,194 +3742,80 @@ main > .manifesto figcaption {
   z-index: 1;
 }
 
-.contact__panel > * {
+.contact__cta > * {
   position: relative;
   z-index: 2;
 }
 
-.contact__form {
-  background: transparent;
-  border: 0;
-  border-radius: 0;
-  padding: 0;
-  box-shadow: none;
-  margin: 0;
+.contact__cta:hover {
+  transform: translateY(-4px);
+  border-color: var(--card-border-strong);
+  box-shadow: var(--card-shadow-hover);
 }
 
-.contact__hint {
-  margin: 0 0 clamp(22px, 3vw, 28px);
-  color: rgba(255, 255, 255, 0.92);
-  font-size: 0.98rem;
-  line-height: 1.75;
-  text-align: center;
+.contact__cta:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
-.contact__row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(14px, 2.2vw, 20px);
-  margin-bottom: clamp(14px, 2.2vw, 20px);
-}
-
-.contact__field {
-  display: block;
-}
-
-.contact__field--ta {
-  margin-bottom: clamp(18px, 2.8vw, 24px);
-}
-
-.contact__field input,
-.contact__field textarea {
-  width: 100%;
-  padding: 14px 16px;
-  border-radius: 10px;
-  background: #fff;
-  border: 0;
-  font-family: inherit;
-  font-size: 1rem;
-  color: #1e293b;
-  outline: none;
-  transition: box-shadow 0.25s var(--ease-out);
-  box-sizing: border-box;
-}
-
-.contact__field textarea {
-  resize: vertical;
-  min-height: 118px;
-  line-height: 1.55;
-}
-
-.contact__field input::placeholder,
-.contact__field textarea::placeholder {
-  color: rgba(30, 41, 59, 0.45);
-}
-
-.contact__field input:focus,
-.contact__field textarea:focus {
-  box-shadow: 0 0 0 3px rgba(223, 255, 112, 0.35);
-}
-
-.contact__check {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  flex-direction: row-reverse;
-  justify-content: flex-start;
-  margin: 4px 0 20px;
-  color: rgba(255, 255, 255, 0.88);
-  font-size: 0.93rem;
-  line-height: 1.55;
-  cursor: pointer;
-  text-align: right;
-}
-
-.contact__check input[type="checkbox"] {
-  appearance: none;
-  -webkit-appearance: none;
-  width: 22px;
-  height: 22px;
-  min-width: 22px;
-  margin-top: 2px;
-  border-radius: 50%;
-  border: 2px solid #fff;
-  background: transparent;
-  cursor: pointer;
-  display: grid;
-  place-items: center;
-  transition: background 0.2s ease, border-color 0.2s ease;
-}
-
-.contact__check input[type="checkbox"]:checked {
-  background: #dfff70;
-  border-color: #dfff70;
-}
-
-.contact__check input[type="checkbox"]:checked::after {
-  content: "";
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #1e293b;
-}
-
-.contact__check a {
-  color: #f47293;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  font-weight: 600;
-}
-
-.contact__check a:hover {
-  color: #fda4bd;
-}
-
-.contact__submit {
-  width: 100%;
-  padding: 18px 22px;
-  border: 0;
-  border-radius: 12px;
-  background: #dfff70;
-  color: #0f172a;
-  font-family: inherit;
-  font-weight: 800;
-  font-size: 1.06rem;
-  cursor: pointer;
-  letter-spacing: -0.01em;
-  transition:
-    transform 0.22s var(--ease-out),
-    filter 0.22s var(--ease-out),
-    box-shadow 0.22s var(--ease-out);
-}
-
-.contact__submit:hover {
-  filter: brightness(0.94);
-  transform: translateY(-1px);
-  box-shadow: 0 10px 28px rgba(223, 255, 112, 0.25);
-}
-
-.contact__submit:active {
-  transform: translateY(0);
-}
-
-.contact__submit:disabled {
-  opacity: 0.65;
-  cursor: not-allowed;
-  transform: none;
-  box-shadow: none;
-}
-
-.contact__honey {
-  position: absolute;
-  left: -10000px;
-  width: 1px;
-  height: 1px;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.contact__status {
-  margin: 14px 0 0;
-  min-height: 1.4em;
-  text-align: center;
-  font-size: 0.98rem;
-  font-weight: 600;
-  color: rgba(234, 246, 246, 0.78);
-  transition: color 0.25s var(--ease-out);
-}
-
-.contact__status.is-success {
+.contact__cta-kicker {
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
   color: var(--accent);
+  opacity: 0.85;
 }
 
-.contact__status.is-error {
-  color: var(--red);
+.contact__cta-title {
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #fff;
+  line-height: 1.25;
+}
+
+.contact__cta-sub {
+  margin-top: 2px;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: rgba(234, 246, 246, 0.7);
+}
+
+.contact__cta--primary {
+  background: var(--card-bg-strong);
+  border-color: rgba(182, 227, 230, 0.32);
+  box-shadow:
+    var(--card-shadow),
+    0 0 60px rgba(92, 214, 220, 0.12);
+}
+
+.contact__cta--primary::before {
+  background: linear-gradient(155deg,
+    rgba(182, 227, 230, 0.55) 0%,
+    rgba(182, 227, 230, 0.15) 40%,
+    transparent 70%);
+}
+
+.contact__cta--primary:hover {
+  box-shadow:
+    var(--card-shadow-hover),
+    0 0 80px rgba(92, 214, 220, 0.2);
+}
+
+.contact__cta--wa .contact__cta-kicker {
+  color: #4ade80;
+}
+
+@media (max-width: 640px) {
+  .contact__ctas { grid-template-columns: 1fr; max-width: 460px; }
 }
 
 .contact__methods {
   list-style: none;
-  margin: clamp(22px, 3vw, 28px) 0 0;
+  margin: clamp(22px, 3vw, 28px) auto 0;
   padding: clamp(18px, 2.6vw, 22px) 0 0;
+  max-width: 720px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;

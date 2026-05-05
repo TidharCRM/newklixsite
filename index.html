@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./style.css?v=78" />
+    <link rel="stylesheet" href="./style.css?v=79" />
     <style>
       /* KLIX loader — inline so it paints instantly, before style.css loads */
       html.klix-loading,
@@ -777,81 +777,31 @@
           </p>
         </header>
 
-        <p class="contact__fasttrack-line">
-          יודעים בדיוק מה אתם צריכים?
+        <div class="contact__ctas" data-reveal data-delay="100">
           <a
+            class="contact__cta contact__cta--primary"
             href="https://tally.so/r/gDQO9N"
             target="_blank"
             rel="noopener noreferrer"
           >
-            מלאו את טופס האפיון להקמה מיידית ←
+            <span class="contact__cta-kicker">המסלול המהיר</span>
+            <span class="contact__cta-title">מלאו את טופס האפיון</span>
+            <span class="contact__cta-sub">תוצאה מיידית, בלי שיחה ←</span>
           </a>
-        </p>
 
-        <div class="contact__divider" aria-hidden="true">
-          <span>או השאירו פרטים לייעוץ</span>
+          <a
+            class="contact__cta contact__cta--wa"
+            href="https://wa.me/972526331295?text=%D7%94%D7%99%D7%99%20KLIX%2C%20%D7%91%D7%90%D7%AA%D7%99%20%D7%9E%D7%90%D7%AA%D7%A8%20%D7%94%D7%91%D7%99%D7%AA%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%99%D7%97%D7%AA%20%D7%94%D7%99%D7%9B%D7%A8%D7%95%D7%AA."
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span class="contact__cta-kicker">או באופן אישי</span>
+            <span class="contact__cta-title">דברו איתי בוואטסאפ</span>
+            <span class="contact__cta-sub">תשובה תוך כמה שעות ←</span>
+          </a>
         </div>
 
-        <div class="contact__panel">
-          <form
-            class="contact__form"
-            action="https://formspree.io/f/mkoyjawy"
-            method="POST"
-            novalidate
-          >
-            <input type="hidden" name="_subject" value="🟢 ליד חדש מאתר KLIX - יצירת קשר" />
-            <input type="hidden" name="_format" value="plain" />
-            <input
-              type="text"
-              name="_gotcha"
-              tabindex="-1"
-              autocomplete="off"
-              aria-hidden="true"
-              class="contact__honey"
-            />
-
-            <p class="contact__hint">
-              !יש להשאיר פרטים בטופס ואדאג לחזור אליך תוך 2 ימי עסקים, ביחד ניקח
-              את הנראות הדיגיטלית שלך לרמה הבאה
-            </p>
-
-            <div class="contact__row">
-              <label class="contact__field">
-                <span class="visually-hidden">שם מלא</span>
-                <input type="text" name="name" placeholder="מה השם?" required autocomplete="name" />
-              </label>
-              <label class="contact__field">
-                <span class="visually-hidden">אימייל</span>
-                <input type="email" name="email" placeholder="האימייל הכי טוב שלך" required autocomplete="email" />
-              </label>
-              <label class="contact__field">
-                <span class="visually-hidden">טלפון</span>
-                <input type="tel" name="phone" placeholder="הטלפון הכי טוב שלך" required autocomplete="tel" />
-              </label>
-            </div>
-
-            <label class="contact__field contact__field--ta">
-              <span class="visually-hidden">הודעה</span>
-              <textarea name="message" rows="4" placeholder=";) רוצה לכתוב לי משהו? לא חייב"></textarea>
-            </label>
-
-            <label class="contact__check">
-              <input type="checkbox" name="agree" required />
-              <span>
-                קראתי ואני מאשר את
-                <a href="#" target="_blank" rel="noopener">מדיניות הפרטיות</a>
-                וקבלת דיוור מ־KLIX
-              </span>
-            </label>
-
-            <button type="submit" class="contact__submit">
-              !אשמח לקבל ייעוץ מקצועי
-            </button>
-
-            <p class="contact__status" role="status" aria-live="polite"></p>
-          </form>
-
-          <ul class="contact__methods" aria-label="דרכים נוספות ליצירת קשר">
+        <ul class="contact__methods" aria-label="דרכים נוספות ליצירת קשר">
             <li>
               <a href="tel:+972526331295" class="contact__method">
                 <span>052-633-1295</span>
@@ -885,7 +835,6 @@
               </a>
             </li>
           </ul>
-        </div>
       </div>
     </section>
 
