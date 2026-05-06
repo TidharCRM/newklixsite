@@ -3331,13 +3331,13 @@ main > .section.projects {
   }
 }
 
-/* ───────── PAIN (this isn't you) — warm cream island ───────── */
+/* ───────── PAIN (this isn't you) — dark teal stack, image on the end ───────── */
 .pain {
   background:
-    radial-gradient(900px 500px at 50% 0%, rgba(255, 235, 200, 0.08), transparent 60%),
-    linear-gradient(180deg, #f8efde 0%, #f3e6cf 100%);
+    radial-gradient(900px 500px at 50% 0%, rgba(120, 220, 225, 0.06), transparent 60%),
+    radial-gradient(700px 420px at 0% 80%, rgba(80, 200, 210, 0.08), transparent 65%),
+    linear-gradient(180deg, #062326 0%, #082b30 100%);
   padding: clamp(72px, 10vw, 120px) 0;
-  color: #1f2530;
 }
 
 .pain__head {
@@ -3351,7 +3351,7 @@ main > .section.projects {
   font-size: clamp(2rem, 5vw, 3.2rem);
   letter-spacing: -0.025em;
   line-height: 1.14;
-  color: #1a1f2a;
+  color: #fff;
   font-weight: 800;
 }
 
@@ -3360,7 +3360,7 @@ main > .section.projects {
 }
 
 .pain__title-line--accent {
-  color: #b8763a;
+  color: var(--accent);
   font-style: italic;
   font-weight: 700;
 }
@@ -3368,7 +3368,7 @@ main > .section.projects {
 .pain__intro {
   margin: 0 auto 12px;
   max-width: 620px;
-  color: rgba(31, 37, 48, 0.75);
+  color: rgba(234, 246, 246, 0.78);
   font-size: clamp(1.02rem, 1.6vw, 1.12rem);
   line-height: 1.7;
 }
@@ -3376,7 +3376,7 @@ main > .section.projects {
 .pain__lead {
   margin: 0 auto;
   max-width: 620px;
-  color: #1a1f2a;
+  color: #fff;
   font-size: clamp(1.02rem, 1.6vw, 1.12rem);
   font-weight: 700;
   line-height: 1.6;
@@ -3386,7 +3386,7 @@ main > .section.projects {
   list-style: none;
   margin: 0 auto;
   padding: 0;
-  max-width: 620px;
+  max-width: 640px;
   display: flex;
   flex-direction: column;
   gap: clamp(18px, 2.4vw, 28px);
@@ -3395,33 +3395,56 @@ main > .section.projects {
 .pain__item {
   position: relative;
   display: flex;
-  flex-direction: row;
+  /* Visually: image on the right (end), text on the left.
+     row-reverse swaps the HTML order under the document's RTL base. */
+  flex-direction: row-reverse;
   align-items: center;
   gap: clamp(18px, 2.6vw, 28px);
-  background: #fdf6e8;
-  border: 1px solid rgba(184, 118, 58, 0.10);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: 28px;
   padding: clamp(20px, 2.4vw, 28px) clamp(22px, 2.8vw, 32px);
-  box-shadow:
-    0 2px 0 rgba(184, 118, 58, 0.05),
-    0 12px 32px rgba(60, 35, 10, 0.06),
-    0 1px 0 rgba(255, 255, 255, 0.7) inset;
+  backdrop-filter: var(--card-blur);
+  -webkit-backdrop-filter: var(--card-blur);
+  box-shadow: var(--card-shadow);
+  isolation: isolate;
+  overflow: hidden;
   transition:
     transform 0.32s var(--ease-out),
+    border-color 0.32s var(--ease-out),
     box-shadow 0.32s var(--ease-out);
 }
 
+.pain__item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(155deg,
+    rgba(182, 227, 230, 0.30) 0%,
+    rgba(182, 227, 230, 0.05) 40%,
+    transparent 65%);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  z-index: 3;
+}
+
 .pain__item:hover {
-  transform: translateY(-2px);
-  box-shadow:
-    0 2px 0 rgba(184, 118, 58, 0.06),
-    0 18px 40px rgba(60, 35, 10, 0.10),
-    0 1px 0 rgba(255, 255, 255, 0.7) inset;
+  transform: translateY(-3px);
+  border-color: var(--card-border-strong);
+  box-shadow: var(--card-shadow-hover);
 }
 
 .pain__media {
+  position: relative;
+  z-index: 2;
   flex: 0 0 auto;
-  width: clamp(96px, 14vw, 128px);
+  width: clamp(100px, 14vw, 132px);
   align-self: center;
   display: grid;
   place-items: center;
@@ -3433,13 +3456,16 @@ main > .section.projects {
   max-height: 160px;
   object-fit: contain;
   display: block;
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.35));
 }
 
 .pain__copy {
+  position: relative;
+  z-index: 2;
   margin: 0;
   flex: 1 1 auto;
-  text-align: center;
-  color: rgba(31, 37, 48, 0.72);
+  text-align: right;
+  color: rgba(234, 246, 246, 0.72);
   font-size: clamp(0.98rem, 1.5vw, 1.05rem);
   line-height: 1.6;
 }
@@ -3447,7 +3473,7 @@ main > .section.projects {
 .pain__copy strong {
   display: block;
   margin-bottom: 6px;
-  color: #1a1f2a;
+  color: #fff;
   font-weight: 800;
   font-size: clamp(1.05rem, 1.6vw, 1.18rem);
   letter-spacing: -0.01em;
@@ -3458,6 +3484,7 @@ main > .section.projects {
   .pain__item {
     gap: 14px;
     padding: 18px 18px;
+    border-radius: 22px;
   }
   .pain__media {
     width: 88px;
