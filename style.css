@@ -3331,6 +3331,161 @@ main > .section.projects {
   }
 }
 
+/* ───────── PAIN (this isn't you) ───────── */
+.pain {
+  background:
+    radial-gradient(900px 500px at 50% 0%, rgba(120, 220, 225, 0.06), transparent 60%),
+    radial-gradient(700px 420px at 100% 80%, rgba(80, 200, 210, 0.08), transparent 65%),
+    linear-gradient(180deg, #062326 0%, #082b30 100%);
+  padding: clamp(80px, 11vw, 130px) 0;
+}
+
+.pain__head {
+  max-width: 820px;
+  margin: 0 auto clamp(48px, 7vw, 72px);
+  text-align: center;
+}
+
+.pain__title {
+  margin: 0 0 clamp(20px, 2.6vw, 28px);
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  letter-spacing: -0.025em;
+  line-height: 1.14;
+  color: #fff;
+  font-weight: 800;
+}
+
+.pain__title-line {
+  display: block;
+}
+
+.pain__title-line--accent {
+  color: var(--accent);
+  font-style: italic;
+  font-weight: 700;
+}
+
+.pain__intro {
+  margin: 0 auto 12px;
+  max-width: 680px;
+  color: rgba(234, 246, 246, 0.78);
+  font-size: clamp(1.05rem, 1.7vw, 1.18rem);
+  line-height: 1.7;
+}
+
+.pain__lead {
+  margin: 0 auto;
+  max-width: 680px;
+  color: #fff;
+  font-size: clamp(1.05rem, 1.7vw, 1.18rem);
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.pain__grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(18px, 2vw, 26px);
+}
+
+.pain__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
+  backdrop-filter: var(--card-blur);
+  -webkit-backdrop-filter: var(--card-blur);
+  box-shadow: var(--card-shadow);
+  isolation: isolate;
+  overflow: hidden;
+  transition:
+    transform 0.4s var(--ease-out),
+    border-color 0.4s var(--ease-out),
+    box-shadow 0.4s var(--ease-out);
+}
+
+.pain__item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(155deg,
+    rgba(182, 227, 230, 0.30) 0%,
+    rgba(182, 227, 230, 0.05) 40%,
+    transparent 65%);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.pain__item:hover {
+  transform: translateY(-4px);
+  border-color: var(--card-border-strong);
+  box-shadow: var(--card-shadow-hover);
+}
+
+.pain__media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: linear-gradient(180deg, #0d2f33 0%, #061d20 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.pain__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s var(--ease-out);
+}
+
+.pain__item:hover .pain__media img {
+  transform: scale(1.04);
+}
+
+.pain__copy {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  padding: clamp(20px, 2.4vw, 26px) clamp(20px, 2.4vw, 26px) clamp(22px, 2.8vw, 28px);
+  text-align: right;
+  color: rgba(234, 246, 246, 0.7);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.pain__copy strong {
+  display: block;
+  margin-bottom: 6px;
+  color: #fff;
+  font-weight: 800;
+  font-size: clamp(1.05rem, 1.5vw, 1.15rem);
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+@media (max-width: 980px) {
+  .pain__grid { grid-template-columns: repeat(2, 1fr); }
+  .pain__item:last-child { grid-column: 1 / -1; max-width: 50%; margin-inline: auto; }
+}
+
+@media (max-width: 640px) {
+  .pain__grid { grid-template-columns: 1fr; max-width: 460px; margin-inline: auto; }
+  .pain__item:last-child { max-width: none; }
+}
+
 /* ───────── SOLUTION (what a landing page does) ───────── */
 .solution {
   background:
