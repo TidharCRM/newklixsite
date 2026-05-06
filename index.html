@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./style.css?v=84" />
+    <link rel="stylesheet" href="./style.css?v=85" />
     <style>
       /* KLIX loader — inline so it paints instantly, before style.css loads */
       html.klix-loading,
@@ -266,8 +266,8 @@
       aria-label="תפריט"
     >
       <nav class="menu-overlay__inner" aria-label="ניווט">
-        <a href="#why">למה דף נחיתה</a>
-        <a href="#solution">מה הוא עושה</a>
+        <a href="#pain">הבעיה</a>
+        <a href="#solution">הפתרון</a>
         <a href="#offer">המודל</a>
         <a href="#projects">פרויקטים אחרונים</a>
         <a href="#testi">המלצות לקוחות</a>
@@ -334,6 +334,17 @@
         </span>
       </h1>
 
+      <p class="hero__sub">
+        עיצוב נקי שמסביר למה דווקא אתם — לפני שלקוח שולח הודעה.
+      </p>
+
+      <div class="hero__cta-row">
+        <a class="hero__cta" href="#projects">
+          <span class="hero__cta-arrow" aria-hidden="true">←</span>
+          <span>לתיק העבודות</span>
+        </a>
+      </div>
+
       <div class="hero__figure-wrap" aria-hidden="true">
         <div class="hero__figure-halo"></div>
         <img class="hero__figure" src="./heropicture.png" alt="" />
@@ -363,48 +374,6 @@
         </div>
       </div>
 
-    </section>
-
-    <section class="section argument" id="why" aria-labelledby="why-heading">
-      <div class="container">
-        <div class="argument__intro" data-reveal>
-          <h2 id="why-heading" class="argument__title">
-            <span class="argument__title-line">יש לכם עסק טוב.</span>
-            <span class="argument__title-line">לקוחות מרוצים.</span>
-            <span class="argument__title-accent">אולי אפילו קמפיין שרץ.</span>
-          </h2>
-          <p class="argument__sub">
-            אבל בפועל? הלידים מגיעים מבולבלים, שואלים "כמה עולה?", נעלמים — או
-            נכנסים לוואטסאפ לפני שהם בכלל הבינו מי אתם.
-          </p>
-        </div>
-
-        <ul class="argument__nope" data-reveal data-delay="120" aria-label="מה לא יפתור את זה">
-          <li class="argument__nope-row">
-            <strong>עוד פוסט</strong>
-            <span>לא יפתור את זה.</span>
-          </li>
-          <li class="argument__nope-row">
-            <strong>עוד סטורי</strong>
-            <span>לא יבנה אמון.</span>
-          </li>
-          <li class="argument__nope-row">
-            <strong>עוד רילס</strong>
-            <span>לא יסביר למה דווקא אתם.</span>
-          </li>
-        </ul>
-
-        <div class="argument__pivot" data-reveal data-delay="220">
-          <p class="argument__pivot-line">הבעיה היא לא בפרסום.</p>
-          <p class="argument__pivot-line argument__pivot-line--strong">
-            הבעיה היא <span class="argument__pivot-mark">לאן הפרסום נוחת.</span>
-          </p>
-          <p class="argument__pivot-sub">
-            היום כולם מפרסמים. כולם נראים דומים. כולם אומרים "אמינות, מקצועיות
-            ושירות". אבל לקוח שלא סומך עליכם תוך כמה שניות — פשוט ממשיך הלאה.
-          </p>
-        </div>
-      </div>
     </section>
 
     <section class="section pain" id="pain" aria-labelledby="pain-heading">
@@ -469,6 +438,14 @@
             </p>
           </li>
         </ul>
+
+        <div class="pain__cost" data-reveal data-delay="240">
+          <p class="pain__cost-headline">הפער הזה עולה לך בכסף.</p>
+          <p class="pain__cost-line">לקוחות פרימיום מצפים לחוויית פרימיום.</p>
+          <p class="pain__cost-line">
+            כשאתה נראה קטן בדיגיטל, קשה לך למכור עסקאות גדולות.
+          </p>
+        </div>
       </div>
     </section>
 
@@ -930,6 +907,46 @@
               </a>
             </li>
           </ul>
+      </div>
+    </section>
+
+    <section class="section letter" id="letter" aria-labelledby="letter-heading">
+      <div class="container">
+        <article class="letter__card" data-reveal>
+          <header class="letter__head">
+            <span class="letter__from">— ממני אליך —</span>
+            <h2 id="letter-heading" class="letter__title">בלאגן בראש?</h2>
+          </header>
+
+          <div class="letter__body">
+            <p>
+              אני יודע באיזה בלאגן הראש שלך נמצא כרגע, כל כך הרבה דעות מכל
+              מיני מנטורים שונים על איך להגדיל את העסק. אני רוצה לעשות קצת
+              סדר בבלאגן.
+            </p>
+            <p>
+              היום, בלי תדמית דיגיטלית ברמה שמשקפת את היכולות שלך — גם העסק
+              הטוב בתחום שלך לא יצליח לשרוד. <strong>דף נחיתה זה המוצר
+              שנועד לחמם את הלקוח לפני שיחת המכירה.</strong> זה הפנים שלך
+              בדיגיטל, זה הדבר שיקבע אם מישהו ישאיר לך פרטים כי הוא מבין
+              את הערך שלך — או שמישהו השאיר לך פרטים כי בא לו משהו זול.
+            </p>
+            <p>
+              לא הגעת לכאן סתם. הבנת שדף נחיתה הוא הפתרון לבעיה שלך כרגע.
+              בדיוק בשביל עסקים כמוך יצרתי את האופציה לקבל
+              <strong>נראות דיגיטלית של מיליון דולר במחיר נגיש.</strong>
+            </p>
+            <p class="letter__close">
+              אל תפספס את ההזדמנות הזאת.
+              <span class="letter__close-line">נתראה בליגה של הגדולים.</span>
+            </p>
+          </div>
+
+          <footer class="letter__sign">
+            <span class="letter__signature">תדהר</span>
+            <span class="letter__signature-mark" aria-hidden="true"></span>
+          </footer>
+        </article>
       </div>
     </section>
 
