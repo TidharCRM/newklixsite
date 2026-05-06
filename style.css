@@ -937,41 +937,53 @@ em {
   }
 }
 
-/* Kicker — small credibility line IN FRONT, above figure's head */
-.hero__kicker {
+/* Intro wrapper — kicker + title + subtitle + CTA stack in natural flow,
+   sitting BEHIND the figure (z-2 < figure z-4). Figure has pointer-events:none,
+   so the CTA stays clickable even where the figure overlaps it. */
+.hero__intro {
   position: absolute;
-  top: clamp(120px, 16vh, 200px);
+  top: clamp(110px, 16vh, 200px);
   left: 0;
   right: 0;
-  z-index: 5;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(14px, 2.4vw, 22px);
+  padding: 0 20px;
+  pointer-events: none;
+}
+
+.hero__intro > * {
+  pointer-events: auto;
+}
+
+/* Kicker — small credibility line above the title. */
+.hero__kicker {
   text-align: center;
   color: rgba(255, 255, 255, 0.82);
   font-size: clamp(0.95rem, 1.4vw, 1.25rem);
   letter-spacing: 1px;
   font-weight: 500;
-  padding: 0 20px;
 }
 
-/* Title — massive, centered; desktop: behind figure (depth). Mobile overrides raise z-index. */
+/* Title — massive, centered; sits behind the figure for depth. */
 .hero__title {
-  position: absolute;
-  top: clamp(180px, 28vh, 320px);
-  left: 0;
-  right: 0;
-  z-index: 2;
   text-align: center;
   font-size: clamp(2.4rem, 8.5vw, 7rem);
   font-weight: 800;
-  line-height: 1;
+  line-height: 1.05;
   letter-spacing: -0.04em;
   margin: 0;
-  padding: 0 20px;
   color: #fff;
-  /* Shadow only on solid line — avoids “ghost” under gradient clipped text + filters */
   text-shadow: none;
   max-width: 100%;
   box-sizing: border-box;
   overflow-wrap: break-word;
+}
+
+.hero__title-line + .hero__title-line {
+  margin-top: 0.06em;
 }
 
 .hero__title-line {
@@ -994,33 +1006,21 @@ em {
   -webkit-text-fill-color: transparent;
 }
 
-/* Subtitle — supporting line below the title, in front of figure. */
+/* Subtitle — supporting line below the title. */
 .hero__sub {
-  position: absolute;
-  top: clamp(300px, 44vh, 600px);
-  left: 0;
-  right: 0;
-  z-index: 5;
   margin: 0 auto;
-  padding: 0 clamp(20px, 5vw, 60px);
   max-width: 640px;
   text-align: center;
   font-size: clamp(1rem, 1.7vw, 1.2rem);
   line-height: 1.55;
-  color: rgba(234, 246, 246, 0.85);
+  color: rgba(234, 246, 246, 0.88);
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55);
 }
 
 /* Primary CTA below the subtitle — pill in teal accent. */
 .hero__cta-row {
-  position: absolute;
-  top: clamp(380px, 53vh, 700px);
-  left: 0;
-  right: 0;
-  z-index: 5;
   display: flex;
   justify-content: center;
-  padding: 0 20px;
 }
 
 .hero__cta {
@@ -1061,12 +1061,13 @@ em {
 }
 
 @media (max-width: 640px) {
-  .hero__sub {
-    top: clamp(260px, 40vh, 380px);
-    font-size: 1rem;
+  .hero__intro {
+    top: clamp(100px, 14vh, 180px);
+    gap: 14px;
   }
-  .hero__cta-row {
-    top: clamp(340px, 50vh, 460px);
+  .hero__sub {
+    font-size: 1rem;
+    max-width: 360px;
   }
 }
 
