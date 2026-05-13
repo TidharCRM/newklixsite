@@ -716,6 +716,180 @@
         background: linear-gradient(135deg, #5cc8ff 0%, #8b5cf6 100%);
       }
 
+      /* ============================================
+         ROLE GATE — first-screen "who are you?"
+         ============================================ */
+      html.role-gating,
+      html.role-gating body {
+        overflow: hidden;
+      }
+      .role-gate {
+        position: fixed;
+        inset: 0;
+        z-index: 9998;
+        display: grid;
+        place-items: center;
+        padding: 40px 24px;
+        background:
+          radial-gradient(900px 520px at 50% 35%, rgba(92, 200, 255, 0.14), transparent 60%),
+          radial-gradient(720px 420px at 50% 70%, rgba(139, 92, 246, 0.18), transparent 65%),
+          #0a0d1c;
+        opacity: 1;
+        transition: opacity 380ms ease, visibility 0s linear 0s;
+      }
+      .role-gate::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(92, 200, 255, 0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(139, 92, 246, 0.05) 1px, transparent 1px);
+        background-size: 56px 56px;
+        mask-image: radial-gradient(ellipse 70% 55% at 50% 50%, #000, transparent 75%);
+        -webkit-mask-image: radial-gradient(ellipse 70% 55% at 50% 50%, #000, transparent 75%);
+        opacity: 0.55;
+        pointer-events: none;
+      }
+      .role-gate.is-hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 380ms ease, visibility 0s linear 380ms;
+      }
+      .role-gate__inner {
+        position: relative;
+        max-width: 760px;
+        width: 100%;
+        text-align: center;
+        transform: translateY(8px);
+        opacity: 0;
+        animation: role-gate-in 600ms cubic-bezier(0.22, 1, 0.36, 1) 120ms forwards;
+      }
+      @keyframes role-gate-in {
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .role-gate__title {
+        font-size: clamp(26px, 4.5vw, 42px);
+        font-weight: 800;
+        letter-spacing: -0.025em;
+        margin: 0 0 12px;
+        color: #fff;
+        line-height: 1.15;
+      }
+      .role-gate__sub {
+        font-size: 16px;
+        color: rgba(240, 243, 255, 0.7);
+        margin: 0 0 36px;
+        line-height: 1.5;
+      }
+      .role-gate__step-tag {
+        display: inline-block;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        padding: 6px 14px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, rgba(92, 200, 255, 0.18) 0%, rgba(139, 92, 246, 0.22) 100%);
+        border: 1px solid rgba(139, 92, 246, 0.35);
+        color: #a5dcff;
+        margin-bottom: 18px;
+      }
+      .role-gate__options {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+      .role-gate__options--2 {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 520px;
+        margin: 0 auto;
+      }
+      @media (max-width: 640px) {
+        .role-gate__options,
+        .role-gate__options--2 { grid-template-columns: 1fr; }
+      }
+      .role-gate__option {
+        appearance: none;
+        border: 1px solid rgba(139, 92, 246, 0.25);
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 18px;
+        padding: 28px 20px;
+        color: #fff;
+        font: inherit;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+        transition:
+          transform 180ms ease,
+          border-color 180ms ease,
+          background 180ms ease,
+          box-shadow 180ms ease;
+      }
+      .role-gate__option:hover,
+      .role-gate__option:focus-visible {
+        outline: none;
+        border-color: #8b5cf6;
+        background: linear-gradient(135deg, rgba(92, 200, 255, 0.10) 0%, rgba(139, 92, 246, 0.18) 100%);
+        transform: translateY(-4px);
+        box-shadow: 0 22px 40px -22px rgba(139, 92, 246, 0.65);
+      }
+      .role-gate__icon {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, rgba(92, 200, 255, 0.22) 0%, rgba(139, 92, 246, 0.32) 100%);
+        border: 1px solid rgba(139, 92, 246, 0.4);
+        color: #fff;
+      }
+      .role-gate__icon svg {
+        display: block;
+      }
+      .role-gate__label {
+        font-size: 19px;
+        font-weight: 700;
+        color: #fff;
+        letter-spacing: -0.01em;
+      }
+      .role-gate__hint {
+        font-size: 13px;
+        color: rgba(240, 243, 255, 0.55);
+        font-weight: 400;
+      }
+      .role-gate__back {
+        display: block;
+        margin: 24px auto 0;
+        background: none;
+        border: 1px solid rgba(139, 92, 246, 0.25);
+        color: rgba(240, 243, 255, 0.7);
+        padding: 8px 18px;
+        border-radius: 999px;
+        font: inherit;
+        font-size: 13px;
+        cursor: pointer;
+        transition: border-color 180ms ease, color 180ms ease;
+      }
+      .role-gate__back:hover {
+        border-color: #8b5cf6;
+        color: #c4b5fd;
+      }
+      .role-gate__skip {
+        margin-top: 28px;
+        background: none;
+        border: none;
+        color: rgba(240, 243, 255, 0.55);
+        font: inherit;
+        font-size: 13px;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        cursor: pointer;
+      }
+      .role-gate__skip:hover { color: #a5dcff; }
+
       /* Loader — three-dot brand pulse */
       .brand-loader {
         display: flex;
@@ -833,6 +1007,222 @@
         }
         // Fail-safe: never trap the user
         setTimeout(hide, 6000);
+      })();
+    </script>
+    <div
+      class="role-gate"
+      id="roleGate"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="roleGateTitle"
+    >
+      <div class="role-gate__inner">
+        <!-- STEP 1: gender -->
+        <div class="role-gate__step" id="gateStep1">
+          <span class="role-gate__step-tag">שלב 1 מתוך 2</span>
+          <h2 class="role-gate__title" id="roleGateTitle">לפני שנתחיל — איך לפנות אליך?</h2>
+          <p class="role-gate__sub">
+            הקופי באתר כתוב בשפה אישית. בחר את לשון הפנייה הנכונה:
+          </p>
+          <div class="role-gate__options role-gate__options--2">
+            <button type="button" class="role-gate__option" data-gender="m">
+              <span class="role-gate__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="26" height="26">
+                  <path
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 13a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm-7 8a7 7 0 0 1 14 0"
+                  />
+                </svg>
+              </span>
+              <span class="role-gate__label">בלשון זכר</span>
+              <span class="role-gate__hint">"אתה משקיע…"</span>
+            </button>
+            <button type="button" class="role-gate__option" data-gender="f">
+              <span class="role-gate__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="26" height="26">
+                  <path
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 13a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0 0v8m-3-3h6"
+                  />
+                </svg>
+              </span>
+              <span class="role-gate__label">בלשון נקבה</span>
+              <span class="role-gate__hint">"את משקיעה…"</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 2: role -->
+        <div class="role-gate__step" id="gateStep2" hidden>
+          <span class="role-gate__step-tag">שלב 2 מתוך 2</span>
+          <h2 class="role-gate__title">ומה התחום שלך?</h2>
+          <p class="role-gate__sub">כדי שכל הקופי באתר יתאים לתחום שלך:</p>
+          <div class="role-gate__options">
+            <button type="button" class="role-gate__option" data-role="therapist">
+              <span class="role-gate__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="26" height="26">
+                  <path
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.65A4 4 0 0 1 19 11c0 5.5-7 10-7 10Z"
+                  />
+                </svg>
+              </span>
+              <span class="role-gate__label" data-m="מטפל" data-f="מטפלת">מטפל</span>
+            </button>
+            <button type="button" class="role-gate__option" data-role="coach">
+              <span class="role-gate__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="26" height="26">
+                  <path
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8L3.5 9.2l5.9-.9L12 3Z"
+                  />
+                </svg>
+              </span>
+              <span class="role-gate__label" data-m="מאמן" data-f="מאמנת">מאמן</span>
+            </button>
+            <button type="button" class="role-gate__option" data-role="consultant">
+              <span class="role-gate__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="26" height="26">
+                  <path
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2m-11 0h16a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1Zm0 5h18"
+                  />
+                </svg>
+              </span>
+              <span class="role-gate__label" data-m="יועץ" data-f="יועצת">יועץ</span>
+            </button>
+          </div>
+          <button type="button" class="role-gate__back" id="gateBack">← חזרה</button>
+        </div>
+
+        <button type="button" class="role-gate__skip" id="roleGateSkip">
+          דלג — תראה לי את הכללי
+        </button>
+      </div>
+    </div>
+    <script>
+      (function () {
+        var G_KEY = "tidhar:gender";
+        var R_KEY = "tidhar:role";
+        var V_G = { m: 1, f: 1 };
+        var V_R = { therapist: 1, coach: 1, consultant: 1 };
+
+        var gate   = document.getElementById("roleGate");
+        var step1  = document.getElementById("gateStep1");
+        var step2  = document.getElementById("gateStep2");
+        if (!gate || !step1 || !step2) return;
+
+        var savedG = null, savedR = null;
+        try { savedG = localStorage.getItem(G_KEY); } catch (e) {}
+        try { savedR = localStorage.getItem(R_KEY); } catch (e) {}
+
+        function whenDom(fn) {
+          if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", fn);
+          } else { fn(); }
+        }
+
+        function applyGender(g) {
+          if (!V_G[g]) return;
+          document.documentElement.setAttribute("data-gender", g);
+          whenDom(function () {
+            var nodes = document.querySelectorAll("[data-m]");
+            for (var i = 0; i < nodes.length; i++) {
+              var t = nodes[i].dataset[g];
+              if (t) nodes[i].textContent = t;
+            }
+            // Re-apply role on top if role is already chosen
+            if (savedR && V_R[savedR]) applyRole(savedR, g);
+          });
+        }
+
+        function applyRole(role, gender) {
+          if (!V_R[role]) return;
+          document.documentElement.setAttribute("data-role", role);
+          var roleKey = "role" + role.charAt(0).toUpperCase() + role.slice(1);
+          var gKey    = gender ? roleKey + gender.toUpperCase() : null;
+          whenDom(function () {
+            var nodes = document.querySelectorAll("[data-role-therapist]");
+            for (var i = 0; i < nodes.length; i++) {
+              var el = nodes[i];
+              var t = (gKey && el.dataset[gKey]) || el.dataset[roleKey];
+              if (t) el.textContent = t;
+            }
+            var sel = document.getElementById("cf-field");
+            if (sel) sel.value = role;
+          });
+        }
+
+        function showStep(n) {
+          step1.hidden = n !== 1;
+          step2.hidden = n !== 2;
+        }
+
+        function dismiss() {
+          gate.classList.add("is-hidden");
+          document.documentElement.classList.remove("role-gating");
+        }
+
+        function pickGender(g) {
+          if (!V_G[g]) return;
+          try { localStorage.setItem(G_KEY, g); } catch (e) {}
+          savedG = g;
+          applyGender(g);
+          if (savedR && V_R[savedR]) { dismiss(); return; }
+          showStep(2);
+        }
+
+        function pickRole(role) {
+          if (!V_R[role]) return;
+          try { localStorage.setItem(R_KEY, role); } catch (e) {}
+          savedR = role;
+          applyRole(role, savedG);
+          dismiss();
+        }
+
+        // Init flow
+        if (savedG && V_G[savedG] && savedR && V_R[savedR]) {
+          applyGender(savedG);
+          applyRole(savedR, savedG);
+          gate.classList.add("is-hidden");
+        } else {
+          document.documentElement.classList.add("role-gating");
+          if (savedG && V_G[savedG]) {
+            applyGender(savedG);
+            showStep(2);
+          } else {
+            showStep(1);
+          }
+        }
+
+        gate.addEventListener("click", function (e) {
+          var gBtn = e.target.closest("button[data-gender]");
+          if (gBtn) { pickGender(gBtn.getAttribute("data-gender")); return; }
+          var rBtn = e.target.closest("button[data-role]");
+          if (rBtn) { pickRole(rBtn.getAttribute("data-role")); return; }
+          if (e.target.closest("#gateBack"))      { showStep(1); return; }
+          if (e.target.closest("#roleGateSkip"))  { dismiss(); }
+        });
       })();
     </script>
     <a class="skip-link" href="#main">דלג לתוכן</a>
@@ -958,7 +1348,7 @@
         <div class="hero__kicker">תוכנית ליווי 10 שבועות · 1:1 · עבודה מעשית</div>
 
         <h1 class="hero__title">
-          <span class="hero__title-line">כל שקל שאתה משקיע בפרסום —</span>
+          <span class="hero__title-line">כל שקל <span data-m="שאתה משקיע" data-f="שאת משקיעה">שאתה משקיע</span> בפרסום —</span>
           <span class="hero__title-line hero__title-line--accent">
             מתאדה?
           </span>
@@ -966,7 +1356,8 @@
 
         <p class="hero__sub">
           תוכנית ליווי של 10 שבועות שבסופה יהיה לך משפך שיווק עצמאי, שעובד
-          24/7, בלי שתהיה תלוי בחברת פרסום או במישהו חיצוני.
+          24/7, בלי <span data-m="שתהיה תלוי" data-f="שתהיי תלויה">שתהיה תלוי</span>
+          בחברת פרסום או במישהו חיצוני.
         </p>
 
         <div class="hero__cta-row">
@@ -988,24 +1379,45 @@
       <div class="container">
         <div class="pain__head" data-reveal>
           <h2 id="pain-heading" class="pain__title">
-            <span class="pain__title-line">אם אתה מטפל או מאמן,</span>
+            <span class="pain__title-line">
+              <span data-m="אם אתה" data-f="אם את">אם אתה</span>
+              <span
+                data-role-therapist="מטפל"
+                data-role-therapist-m="מטפל"
+                data-role-therapist-f="מטפלת"
+                data-role-coach="מאמן"
+                data-role-coach-m="מאמן"
+                data-role-coach-f="מאמנת"
+                data-role-consultant="יועץ"
+                data-role-consultant-m="יועץ"
+                data-role-consultant-f="יועצת"
+                data-m="מטפל, מאמן או יועץ"
+                data-f="מטפלת, מאמנת או יועצת"
+              >מטפל, מאמן או יועץ</span>,
+            </span>
             <span class="pain__title-line pain__title-line--accent">סביר להניח שאחד מהבאים מוכר לך:</span>
           </h2>
           <p class="pain__intro">
             שילמת לחברת פרסום כמה אלפי שקלים בחודש, והתחלת לחשוד שאת רוב הכסף
-            הם שורפים על קמפיינים שאתה לא מבין. או שניסית לבד — העלית מודעה,
-            חיכית, וזה לא הביא לידים. או אולי השקעת בקורס שיווק שלמדת בו את כל
-            המושגים, אבל כשהגיע הזמן לבנות את המשפך בעצמך — לא הצלחת לחבר את
-            הכלים זה לזה.
+            הם שורפים על קמפיינים <span data-m="שאתה לא מבין" data-f="שאת לא מבינה">שאתה לא מבין</span>.
+            או שניסית לבד — העלית מודעה, חיכית, וזה לא הביא לידים. או אולי
+            השקעת בקורס שיווק שלמדת בו את כל המושגים, אבל כשהגיע הזמן לבנות
+            את המשפך בעצמך — לא הצלחת לחבר את הכלים זה לזה.
           </p>
           <p class="pain__intro">
-            ובינתיים היומן לא מתמלא, ההכנסה תנודתית, ואתה מבזבז שעות בלרדוף
-            אחרי לקוחות במקום לעשות את העבודה שאתה אוהב.
+            ובינתיים היומן לא מתמלא, ההכנסה תנודתית,
+            <span data-m="ואתה מבזבז" data-f="ואת מבזבזת">ואתה מבזבז</span>
+            שעות בלרדוף אחרי לקוחות במקום לעשות את העבודה
+            <span data-m="שאתה אוהב" data-f="שאת אוהבת">שאתה אוהב</span>.
           </p>
         </div>
 
         <div class="pain__cost" data-reveal data-delay="120">
-          <p class="pain__cost-headline">זה לא בגלל שאתה לא טוב במה שאתה עושה.</p>
+          <p class="pain__cost-headline">
+            זה לא בגלל
+            <span data-m="שאתה לא טוב" data-f="שאת לא טובה">שאתה לא טוב</span>
+            במה <span data-m="שאתה עושה" data-f="שאת עושה">שאתה עושה</span>.
+          </p>
           <p class="pain__cost-line">
             זה בגלל שאף אחד לא לימד אותך איך הצד הטכני של זה עובד.
           </p>
@@ -1023,17 +1435,17 @@
           <li class="solution__item" data-reveal>
             <span class="solution__num">01</span>
             <h3 class="solution__title">חברות פרסום עובדות לפי תקציב, לא לפי תוצאה</h3>
-            <p>ככל שאתה שורף יותר, הן מרוויחות יותר. אין להן תמריץ אמיתי לבנות לך תשתית עצמאית.</p>
+            <p>ככל <span data-m="שאתה שורף" data-f="שאת שורפת">שאתה שורף</span> יותר, הן מרוויחות יותר. אין להן תמריץ אמיתי לבנות לך תשתית עצמאית.</p>
           </li>
           <li class="solution__item" data-reveal data-delay="80">
             <span class="solution__num">02</span>
             <h3 class="solution__title">קורסי שיווק מלמדים תיאוריה, לא יישום</h3>
-            <p>אתה יוצא עם המון ידע, בלי דף נחיתה, בלי אוטומציה, בלי מערכת שעובדת.</p>
+            <p><span data-m="אתה יוצא" data-f="את יוצאת">אתה יוצא</span> עם המון ידע, בלי דף נחיתה, בלי אוטומציה, בלי מערכת שעובדת.</p>
           </li>
           <li class="solution__item" data-reveal data-delay="160">
             <span class="solution__num">03</span>
             <h3 class="solution__title">פרילנסרים בונים לך משהו — ונעלמים</h3>
-            <p>נשארת עם דף שאתה לא יודע לתחזק, ואוטומציה שכשהיא נשברת, אתה תקוע.</p>
+            <p>נשארת עם דף <span data-m="שאתה לא יודע" data-f="שאת לא יודעת">שאתה לא יודע</span> לתחזק, ואוטומציה שכשהיא נשברת, <span data-m="אתה תקוע" data-f="את תקועה">אתה תקוע</span>.</p>
           </li>
         </ol>
 
@@ -1048,9 +1460,16 @@
         <div class="method__head" data-reveal>
           <h2 id="method-heading" class="method__title">
             תוכנית של 10 שבועות.
-            <span class="method__title-accent">בסופה — אתה יוצא עם משפך מלא, ויודע לתחזק אותו לבד.</span>
+            <span class="method__title-accent">
+              בסופה —
+              <span data-m="אתה יוצא עם משפך מלא, ויודע לתחזק אותו לבד." data-f="את יוצאת עם משפך מלא, ויודעת לתחזק אותו לבד.">אתה יוצא עם משפך מלא, ויודע לתחזק אותו לבד.</span>
+            </span>
           </h2>
-          <p class="method__sub">אני בונה — אתה לומד — אתה ממשיך לבד.</p>
+          <p class="method__sub">
+            אני בונה —
+            <span data-m="אתה לומד" data-f="את לומדת">אתה לומד</span> —
+            <span data-m="אתה ממשיך לבד." data-f="את ממשיכה לבד.">אתה ממשיך לבד.</span>
+          </p>
         </div>
 
         <ol class="method__stages" data-reveal data-delay="100" aria-label="שלבי התוכנית">
@@ -1062,9 +1481,11 @@
             </div>
             <p class="method__stage-body">
               אנחנו מתחילים בלמפות את העסק שלך: מי הלקוחות שלך באמת, איפה הם
-              נמצאים, מה הם מחפשים. תוך כדי — אתה לומד את שפת השיווק (משפך,
-              ROI, ROAS) לא בתור תיאוריה, אלא בתור שפה שאתה הולך להשתמש בה
-              בעצמך.
+              נמצאים, מה הם מחפשים. תוך כדי —
+              <span data-m="אתה לומד" data-f="את לומדת">אתה לומד</span>
+              את שפת השיווק (משפך, ROI, ROAS) לא בתור תיאוריה, אלא בתור שפה
+              <span data-m="שאתה הולך" data-f="שאת הולכת">שאתה הולך</span>
+              להשתמש בה בעצמך.
             </p>
             <p class="method__stage-outcome">
               <strong>בסוף השלב:</strong> מפת לקוחות ברורה + הבנה למה החלטות
@@ -1081,8 +1502,8 @@
             <p class="method__stage-body">
               אני בונה לך את התשתית: דף נחיתה, דף מכירה, 3 מגנטי לידים,
               אוטומציות ManyChat שמחברות את האינסטגרם, הטיקטוק והפייסבוק שלך.
-              אתה רואה איך כל חלק נבנה. אנחנו בודקים יחד, מעדנים, וזה הופך
-              לשלך.
+              <span data-m="אתה רואה" data-f="את רואה">אתה רואה</span>
+              איך כל חלק נבנה. אנחנו בודקים יחד, מעדנים, וזה הופך לשלך.
             </p>
             <p class="method__stage-outcome">
               <strong>בסוף השלב:</strong> משפך פעיל עם כל הרכיבים מחוברים.
@@ -1096,12 +1517,18 @@
               <h3 class="method__stage-title">עצמאות</h3>
             </div>
             <p class="method__stage-body">
-              אתה בונה את מגנט הליד הרביעי לבד, עם הכוונה שלי. אנחנו לומדים את
-              כלי ה־AI שיאפשרו לך לפתח אוטומציות חדשות בעצמך, גם בלי ידע
-              בתכנות. אם אתה יודע לדבר עם ChatGPT — אתה תדע להשתמש בהם.
+              <span data-m="אתה בונה" data-f="את בונה">אתה בונה</span>
+              את מגנט הליד הרביעי לבד, עם הכוונה שלי. אנחנו לומדים את כלי
+              ה־AI שיאפשרו לך לפתח אוטומציות חדשות בעצמך, גם בלי ידע
+              בתכנות. אם <span data-m="אתה יודע" data-f="את יודעת">אתה יודע</span>
+              לדבר עם ChatGPT —
+              <span data-m="אתה תדע" data-f="את תדעי">אתה תדע</span>
+              להשתמש בהם.
             </p>
             <p class="method__stage-outcome">
-              <strong>בסוף השלב:</strong> אתה לא צריך אותי יותר. וזו המטרה.
+              <strong>בסוף השלב:</strong>
+              <span data-m="אתה לא צריך" data-f="את לא צריכה">אתה לא צריך</span>
+              אותי יותר. וזו המטרה.
             </p>
           </li>
         </ol>
@@ -1117,13 +1544,13 @@
             <span class="dot-mark" aria-hidden="true"></span>
           </h2>
           <p class="section__sub">
-            מה אתה לוקח איתך הביתה — ונשאר שלך.
+            מה <span data-m="אתה לוקח" data-f="את לוקחת">אתה לוקח</span> איתך הביתה — ונשאר שלך.
           </p>
         </div>
 
         <ul class="deliverables__list" data-reveal>
-          <li><strong>דף נחיתה</strong> מותאם אישית, שאתה יודע לערוך.</li>
-          <li><strong>דף מכירה</strong> לתוכניות הליווי / הקליניקה שלך.</li>
+          <li><strong>דף נחיתה</strong> מותאם אישית, <span data-m="שאתה יודע" data-f="שאת יודעת">שאתה יודע</span> לערוך.</li>
+          <li><strong>דף מכירה</strong> <span data-role-therapist="לקליניקה שלך" data-role-coach="לתוכניות הליווי שלך" data-role-consultant="לשירותי הייעוץ שלך">לקליניקה / לתוכניות הליווי שלך</span>.</li>
           <li><strong>4 מגנטי לידים</strong> — שלושה שבניתי, אחד שבנית בעצמך.</li>
           <li><strong>אוטומציות ManyChat</strong> לאינסטגרם, פייסבוק וטיקטוק.</li>
           <li><strong>אוריינות שיווקית</strong> — איך לקרוא נתונים, מתי להעלות תקציב, מתי לעצור.</li>
@@ -1132,7 +1559,7 @@
 
         <p class="deliverables__verdict" data-reveal data-delay="100">
           זה לא מנוי. זה לא שירות מתמשך.
-          <strong>זה משהו שאתה מקבל פעם אחת — ונשאר שלך.</strong>
+          <strong>זה משהו <span data-m="שאתה מקבל" data-f="שאת מקבלת">שאתה מקבל</span> פעם אחת — ונשאר שלך.</strong>
         </p>
       </div>
     </section>
@@ -1140,17 +1567,35 @@
     <section class="section notfor" id="notfor" aria-labelledby="notfor-heading">
       <div class="container">
         <div class="notfor__card" data-reveal>
-          <h2 id="notfor-heading" class="notfor__title">רגע — לפני שתחליט, חשוב שתדע:</h2>
+          <h2 id="notfor-heading" class="notfor__title">
+            רגע — לפני <span data-m="שתחליט" data-f="שתחליטי">שתחליט</span>,
+            חשוב <span data-m="שתדע" data-f="שתדעי">שתדע</span>:
+          </h2>
           <p>
-            זאת לא תוכנית "שגר ושכח". אם אתה מחפש מישהו שיעשה את כל העבודה
-            בשבילך ויעלם — אני לא הכתובת הנכונה. התוכנית דורשת ממך
+            זאת לא תוכנית "שגר ושכח". אם
+            <span data-m="אתה מחפש" data-f="את מחפשת">אתה מחפש</span>
+            מישהו שיעשה את כל העבודה בשבילך ויעלם — אני לא הכתובת הנכונה.
+            התוכנית דורשת ממך
             <strong>3–5 שעות עבודה בשבוע</strong>, מחויבות לתהליך, ויצירת תוכן
             אורגני מהצד שלך. בלי זה, המשפך הכי טוב בעולם לא ימלא לך את היומן.
           </p>
           <p>
-            מי שמתאים לתוכנית הזאת — מטפלים ומאמנים שכבר עובדים, יש להם
-            לקוחות, ומבינים שהשלב הבא הוא ללמוד להפעיל את העסק כעסק, לא רק
-            כמקצוע.
+            מי שמתאים לתוכנית הזאת —
+            <span
+              data-role-therapist="מטפלים"
+              data-role-therapist-m="מטפלים"
+              data-role-therapist-f="מטפלות"
+              data-role-coach="מאמנים"
+              data-role-coach-m="מאמנים"
+              data-role-coach-f="מאמנות"
+              data-role-consultant="יועצים"
+              data-role-consultant-m="יועצים"
+              data-role-consultant-f="יועצות"
+              data-m="מטפלים, מאמנים ויועצים"
+              data-f="מטפלות, מאמנות ויועצות"
+            >מטפלים, מאמנים ויועצים</span>
+            שכבר עובדים, יש להם לקוחות, ומבינים שהשלב הבא הוא ללמוד להפעיל את
+            העסק כעסק, לא רק כמקצוע.
           </p>
         </div>
       </div>
@@ -1173,8 +1618,25 @@
             </p>
             <p>
               לא באתי מעולם הקואצ'ינג של "כולם יכולים". <strong>אני מהנדס
-              בנשמה — אני אוהב מערכות שעובדות.</strong> אם אתה מטפל או מאמן
-              שעייף מהמרדף, ואתה רוצה תשתית שעובדת בשבילך — בוא נדבר.
+              בנשמה — אני אוהב מערכות שעובדות.</strong>
+              <span data-m="אם אתה" data-f="אם את">אם אתה</span>
+              <span
+                data-role-therapist="מטפל"
+                data-role-therapist-m="מטפל"
+                data-role-therapist-f="מטפלת"
+                data-role-coach="מאמן"
+                data-role-coach-m="מאמן"
+                data-role-coach-f="מאמנת"
+                data-role-consultant="יועץ"
+                data-role-consultant-m="יועץ"
+                data-role-consultant-f="יועצת"
+                data-m="מטפל, מאמן או יועץ"
+                data-f="מטפלת, מאמנת או יועצת"
+              >מטפל, מאמן או יועץ</span>
+              <span data-m="שעייף" data-f="שעייפה">שעייף</span>
+              מהמרדף, <span data-m="ואתה רוצה" data-f="ואת רוצה">ואתה רוצה</span>
+              תשתית שעובדת בשבילך —
+              <span data-m="בוא נדבר." data-f="בואי נדבר.">בוא נדבר.</span>
             </p>
           </div>
 
@@ -1199,16 +1661,44 @@
             <p class="faq__a">3–5 שעות בשבוע. מפגש שבועי או דו־שבועי איתי + עבודה עצמאית בין המפגשים.</p>
           </div>
           <div class="faq__item">
-            <h3 class="faq__q">אני לא בנאדם טכני. זה יתאים לי?</h3>
-            <p class="faq__a">כל הנקודה של התוכנית היא שהיא בנויה לאנשים לא טכניים. הכלים שאני מלמד הם כאלה שאם אתה יודע לכתוב הודעה ב־WhatsApp — אתה יודע להשתמש בהם.</p>
+            <h3 class="faq__q">
+              <span data-m="אני לא בנאדם טכני." data-f="אני לא טכנית בכלל.">אני לא בנאדם טכני.</span>
+              זה יתאים לי?
+            </h3>
+            <p class="faq__a">
+              כל הנקודה של התוכנית היא שהיא בנויה לאנשים לא טכניים. הכלים
+              שאני מלמד הם כאלה שאם <span data-m="אתה יודע" data-f="את יודעת">אתה יודע</span>
+              לכתוב הודעה ב־WhatsApp — <span data-m="אתה יודע" data-f="את יודעת">אתה יודע</span>
+              להשתמש בהם.
+            </p>
           </div>
           <div class="faq__item">
             <h3 class="faq__q">מה ההבדל בין זה לבין לשכור חברת פרסום?</h3>
             <p class="faq__a">חברת פרסום עובדת בשבילך כל חודש — ואם תפסיק לשלם, אין לך כלום. אני בונה לך נכס שנשאר שלך, ומלמד אותך לתחזק אותו.</p>
           </div>
           <div class="faq__item">
-            <h3 class="faq__q">אתם עובדים גם עם מטפלים בתחילת הדרך?</h3>
-            <p class="faq__a">זה מתאים למי שכבר יש לו לקוחות ועסק פעיל — גם אם בקטן. אם אתה עדיין מגבש את ההצעה השיווקית, נדבר על זה בשיחת האבחון ואומר לך בכנות אם זה השלב הנכון.</p>
+            <h3 class="faq__q">אתם עובדים גם עם
+              <span
+                data-role-therapist="מטפלים"
+                data-role-therapist-m="מטפלים"
+                data-role-therapist-f="מטפלות"
+                data-role-coach="מאמנים"
+                data-role-coach-m="מאמנים"
+                data-role-coach-f="מאמנות"
+                data-role-consultant="יועצים"
+                data-role-consultant-m="יועצים"
+                data-role-consultant-f="יועצות"
+                data-m="מטפלים"
+                data-f="מטפלות"
+              >מטפלים</span>
+              בתחילת הדרך?
+            </h3>
+            <p class="faq__a">
+              זה מתאים למי שכבר יש לו לקוחות ועסק פעיל — גם אם בקטן.
+              אם <span data-m="אתה עדיין מגבש" data-f="את עדיין מגבשת">אתה עדיין מגבש</span>
+              את ההצעה השיווקית, נדבר על זה בשיחת האבחון ואומר לך בכנות אם
+              זה השלב הנכון.
+            </p>
           </div>
           <div class="faq__item">
             <h3 class="faq__q">כמה זה עולה?</h3>
@@ -1216,7 +1706,13 @@
           </div>
           <div class="faq__item">
             <h3 class="faq__q">מה אם זה לא יעבוד?</h3>
-            <p class="faq__a">אני לא יכול להבטיח לידים — זה תלוי בעבודה שלך, באיכות התוכן, ובשוק. מה שאני יכול להבטיח זה שתצא עם תשתית מקצועית, ועם הידע איך להפעיל אותה. את התוצאות אנחנו בונים יחד.</p>
+            <p class="faq__a">
+              אני לא יכול להבטיח לידים — זה תלוי בעבודה שלך, באיכות התוכן,
+              ובשוק. מה שאני יכול להבטיח זה
+              <span data-m="שתצא" data-f="שתצאי">שתצא</span>
+              עם תשתית מקצועית, ועם הידע איך להפעיל אותה. את התוצאות אנחנו
+              בונים יחד.
+            </p>
           </div>
         </div>
       </div>
@@ -1226,10 +1722,14 @@
       <div class="contact__grid" aria-hidden="true"></div>
       <div class="container contact__inner" data-reveal>
         <header class="contact__head">
-          <h2 id="contact-heading">בוא נדבר 30 דקות.</h2>
+          <h2 id="contact-heading">
+            <span data-m="בוא נדבר 30 דקות." data-f="בואי נדבר 30 דקות.">בוא נדבר 30 דקות.</span>
+          </h2>
           <p class="contact__sub">
-            שיחת אבחון בזום — חינם. ללא התחייבות. נדבר על המצב שלך, אני אגיד לך
-            בכנות אם התוכנית הזאת מתאימה לך — או אם יש משהו אחר שאתה צריך עכשיו.
+            שיחת אבחון בזום — חינם. ללא התחייבות. נדבר על המצב שלך, אני אגיד
+            לך בכנות אם התוכנית הזאת מתאימה לך — או אם יש משהו אחר
+            <span data-m="שאתה צריך" data-f="שאת צריכה">שאתה צריך</span>
+            עכשיו.
           </p>
         </header>
 
@@ -1246,15 +1746,15 @@
             <label for="cf-field">מה התחום שלך?</label>
             <select id="cf-field" name="field" required>
               <option value="">בחר…</option>
-              <option value="therapist">מטפל</option>
-              <option value="coach">מאמן</option>
-              <option value="consultant">יועץ</option>
+              <option value="therapist" data-m="מטפל" data-f="מטפלת">מטפל</option>
+              <option value="coach" data-m="מאמן" data-f="מאמנת">מאמן</option>
+              <option value="consultant" data-m="יועץ" data-f="יועצת">יועץ</option>
               <option value="other">אחר</option>
             </select>
           </div>
           <div class="contact__field contact__field--full">
             <label for="cf-goal">
-              מה הדבר אחד שאתה הכי רוצה לפתור?
+              מה הדבר אחד <span data-m="שאתה הכי רוצה" data-f="שאת הכי רוצה">שאתה הכי רוצה</span> לפתור?
               <span class="contact__field-opt">(לא חובה)</span>
             </label>
             <textarea id="cf-goal" name="goal" rows="3"></textarea>
