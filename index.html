@@ -1122,8 +1122,8 @@
     </div>
     <script>
       (function () {
-        var G_KEY = "tidhar:gender";
-        var R_KEY = "tidhar:role";
+        // The gate is intentionally NOT persisted — the user wants every
+        // visit to start fresh, so we keep state only in these closures.
         var V_G = { m: 1, f: 1 };
         var V_R = { therapist: 1, coach: 1, consultant: 1 };
 
@@ -1132,9 +1132,14 @@
         var step2  = document.getElementById("gateStep2");
         if (!gate || !step1 || !step2) return;
 
-        var savedG = null, savedR = null;
-        try { savedG = localStorage.getItem(G_KEY); } catch (e) {}
-        try { savedR = localStorage.getItem(R_KEY); } catch (e) {}
+        // Wipe any values left over from earlier versions that did persist,
+        // so returning visitors still see the gate next time.
+        try {
+          localStorage.removeItem("tidhar:gender");
+          localStorage.removeItem("tidhar:role");
+        } catch (e) {}
+
+        var pickedG = null, pickedR = null;
 
         function whenDom(fn) {
           if (document.readyState === "loading") {
@@ -1151,8 +1156,7 @@
               var t = nodes[i].dataset[g];
               if (t) nodes[i].textContent = t;
             }
-            // Re-apply role on top if role is already chosen
-            if (savedR && V_R[savedR]) applyRole(savedR, g);
+            if (pickedR && V_R[pickedR]) applyRole(pickedR, g);
           });
         }
 
@@ -1185,35 +1189,21 @@
 
         function pickGender(g) {
           if (!V_G[g]) return;
-          try { localStorage.setItem(G_KEY, g); } catch (e) {}
-          savedG = g;
+          pickedG = g;
           applyGender(g);
-          if (savedR && V_R[savedR]) { dismiss(); return; }
           showStep(2);
         }
 
         function pickRole(role) {
           if (!V_R[role]) return;
-          try { localStorage.setItem(R_KEY, role); } catch (e) {}
-          savedR = role;
-          applyRole(role, savedG);
+          pickedR = role;
+          applyRole(role, pickedG);
           dismiss();
         }
 
-        // Init flow
-        if (savedG && V_G[savedG] && savedR && V_R[savedR]) {
-          applyGender(savedG);
-          applyRole(savedR, savedG);
-          gate.classList.add("is-hidden");
-        } else {
-          document.documentElement.classList.add("role-gating");
-          if (savedG && V_G[savedG]) {
-            applyGender(savedG);
-            showStep(2);
-          } else {
-            showStep(1);
-          }
-        }
+        // Always start at step 1 — no persistence between visits or reloads.
+        document.documentElement.classList.add("role-gating");
+        showStep(1);
 
         gate.addEventListener("click", function (e) {
           var gBtn = e.target.closest("button[data-gender]");
@@ -1260,7 +1250,7 @@
         <a href="#contact">לקביעת שיחה</a>
       </div>
       <a
-        href="https://growth-portal-he.lovable.app"
+        href="https://portalfunnel.lovable.app/"
         target="_blank"
         rel="noopener noreferrer"
         class="nav__cta"
@@ -1314,7 +1304,7 @@
       <header class="hero__top">
         <a
           class="hero__login"
-          href="https://growth-portal-he.lovable.app"
+          href="https://portalfunnel.lovable.app/"
           target="_blank"
           rel="noopener noreferrer"
         >
